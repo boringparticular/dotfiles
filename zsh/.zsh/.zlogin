@@ -1,1 +1,3 @@
-exec startx ~/.awesomewm
+if [[ command -v awesome ]]; then
+    exec startx ~/.awesomewm
+fi
