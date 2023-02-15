@@ -6,8 +6,6 @@ export LANG=en_US.UTF-8
 export PAGER="most"
 export EDITOR=nvim
 export VISUAL=nvim
-export PATH=$HOME/.local/bin:${PATH}
-export PATH=$HOME/bin:${PATH}
 export PATH=$HOME/.cargo/bin:${PATH}
 export VIMCONFIG=$HOME/.config/nvim
 export VIMDATA=$HOME/.local/share/nvim
@@ -39,10 +37,10 @@ alias vc="$EDITOR $HOME/.dotfiles/nvim/.config/nvim/init.lua"
 # alias du=dust
 # alias top=ytop 
 
-# Change directory with fuzzy find from https://github.com/jhawthorn/fzy
+# # Change directory with fuzzy find from https://github.com/jhawthorn/fzy
 fcd() { cd $(find | fzy) }
 
-# Fuzzy + nvim
+# # Fuzzy + nvim
 fvim() { nvim $(find | fzy) }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
