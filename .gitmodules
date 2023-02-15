@@ -1,0 +1,6 @@
+[submodule "awesome/.config/awesome/collision"]
+	path = awesome/.config/awesome/collision
+	url = https://github.com/Elv13/collision
+[submodule "awesome/.config/awesome/awesome-wm-widgets"]
+	path = awesome/.config/awesome/awesome-wm-widgets
+	url = https://github.com/streetturtle/awesome-wm-widgets
