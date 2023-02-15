@@ -40,8 +40,20 @@ zinit ice \
     blockf
 zinit snippet PZTM::autosuggestions
 
-zinit light spaceship-prompt/spaceship-prompt
+zinit ice depth=1; zinit light romkatv/powerlevel10k
+
+# zinit light spaceship-prompt/spaceship-prompt
 
 # eval "$(starship init zsh)"
 
 source $ZDOTDIR/include.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.zsh/.p10k.zsh.
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zsh/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+[[ ! -f ~/.zsh/.p10k.zsh ]] || source ~/.zsh/.p10k.zsh
