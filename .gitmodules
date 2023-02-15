@@ -4,3 +4,6 @@
 [submodule "awesome/.config/awesome/awesome-wm-widgets"]
 	path = awesome/.config/awesome/awesome-wm-widgets
 	url = https://github.com/streetturtle/awesome-wm-widgets
+[submodule "personal"]
+	path = personal
+	url = git@github.com:boringparticular/personal-dotfiles.git
