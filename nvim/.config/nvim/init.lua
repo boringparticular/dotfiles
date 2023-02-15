@@ -163,7 +163,7 @@ require('lazy').setup({
             require('nvim-treesitter.configs').setup(opts)
         end,
         opts = {
-            ensure_installed = 'all',
+            ensure_installed = { 'css', 'html', 'lua', 'python', 'rust', 'svelte', 'toml', 'typescript', 'yaml' },
             sync_install = false,
             auto_install = true,
             highlight = {
