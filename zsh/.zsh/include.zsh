@@ -1,9 +1,5 @@
 setopt emacs
 
-[ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
-HISTSIZE=290000
-SAVEHIST=$HISTSIZE
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
