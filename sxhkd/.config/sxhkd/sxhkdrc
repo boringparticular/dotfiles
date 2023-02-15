@@ -1,0 +1,35 @@
+mod4 + shift + Return
+    alacritty
+
+mod4 + Escape ; {s,r,p,h,shift + h}
+    systemctl {suspend,reboot,poweroff,hibernate,suspend-then-hibeernate}
+    
+mod4 + Escape ; l
+    xsecurelock
+    
+XF86AudioLowerVolume
+    amixer set Master 5%- unmute
+
+XF86AudioRaiseVolume
+    amixer set Master 5%+ unmute
+
+XF86AudioMute
+    amixer set Master toggle
+
+shift + XF86AudioMute
+    pavucontrol
+
+mod4 + v
+    clipcat-menu insert
+
+mod4 + p
+    rofi -show combi
+
+mod4 + shift + p
+    rofi -show ssh filebrowser keys windowcd window
+
+mod4 + shift + v
+    killall clipcatd ; clipcatd &
+
+Menu
+   sleep 0.5; xdotool keyup Super_L key --clearmodifiers Super_L
