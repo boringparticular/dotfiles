@@ -1,0 +1,32 @@
+add_newline = true
+
+# format = 'user@host [10:12:33] ~/directory (git-branch state)$'
+# format = '$username$directory'
+
+format = '$username@$hostname \[$time\] $directory\($git_branch$git_commit\)$character'
+
+[directory]
+format = '[$path]($style)[$read_only]($read_only_style) '
+style = 'bold 118'
+
+[git_branch]
+format = '[$branch(:$remote_branch)]($style) '
+style = 'bold 81'
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+
+[hostname]
+ssh_only = false
+format = '[$ssh_symbol$hostname]($style)'
+style = 'bold 166'
+
+[time]
+disabled = false
+format = '[$time]($style)'
+style = 'bold 81'
+
+[username]
+show_always = true
+format = '[$user]($style)'
+style_user = 'bold 135'
