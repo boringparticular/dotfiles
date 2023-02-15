@@ -1,0 +1,7 @@
+[user]
+	email = develop@regnavi.de
+	name = Kai Mies
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
