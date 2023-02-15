@@ -1,0 +1,40 @@
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+/* export SDL_IM_MODULE=fcitx */
+
+export EDITOR=vim
+
+export FMOD_ALSA_DEVICE=pulse
+
+dbus-update-activation-environment --systemd DISPLAY
+
+xrdb -merge $HOME/.Xresources
+
+xsetroot -cursor_name left_ptr
+
+xset -dpms s off
+
+setxkbmap -layout us -variant altgr-intl
+
+xss-lock -n /usr/lib/xsecurelock/dimmer -l -- xsecurelock &
+
+fcitx5 &
+
+if [ -x /usr/bin/nm-applet ] ; then
+    nm-applet --sm-disable &
+fi
+
+kdwallet5 &
+export SSH_AUTH_SOCK
+
+redshift -l 50.73438:7.09549 &
+flameshot &
+volumeicon &
+clipcatd &
+sxhkd &
+nextcloud &
+# pidgin &
+# conky --config=$HOME/.config/conky/conky.conf --xinerama-head 0
+# conky --config=$HOME/.config/conky/conky.conf --xinerama-head 1
+ 
