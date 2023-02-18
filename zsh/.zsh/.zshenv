@@ -1,3 +1,5 @@
+export PATH=$HOME/.local/bin:${PATH}
+
 [ -z "$HISTFILE" ] && HISTFILE="$HOME/.zsh_history"
 HISTSIZE=290000
 SAVEHIST=$HISTSIZE
