@@ -1,2 +1,0 @@
-. $HOME/.xsharedrc
-exec $HOME/.cabal/bin/xmonad
