@@ -85,5 +85,13 @@ if [[ $HOSTNAME = "zeus" ]]; then
     if [[ -f "$ZDOTDIR/personal.zsh" ]]; then
         source $ZDOTDIR/personal.zsh
     fi
+
+    if type clipcat-menu >/dev/null 2>&1; then
+        alias clipedit=' clipcat-menu --finder=builtin edit'
+        alias clipdel=' clipcat-menu --finder=builtin remove'
+
+        bindkey -s '^\' "^Q clipcat-menu --finder=builtin insert ^J"
+        bindkey -s '^]' "^Q clipcat-menu --finder=builtin remove ^J"
+    fi
 fi
 
