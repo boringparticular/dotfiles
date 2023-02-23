@@ -11,6 +11,10 @@
 # fi
 # export PATH
 
+if [[ ${TMUX:+1} ]]; then
+    return 0
+fi
+
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
     exec startx
 fi
