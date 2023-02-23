@@ -24,6 +24,7 @@ lsp.ensure_installed({
     'rust_analyzer',
     'sumneko_lua',
     'svelte',
+    'ansiblels',
 })
 
 local cmp = require('cmp')
