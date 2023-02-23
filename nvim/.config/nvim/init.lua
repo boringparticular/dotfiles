@@ -21,6 +21,7 @@ require('lazy').setup({
     'rcarriga/nvim-notify',
     'tpope/vim-fugitive',
     'numToStr/Comment.nvim',
+    'JoosepAlviste/nvim-ts-context-commentstring',
     'beauwilliams/statusline.lua',
     'mattn/emmet-vim',
     'nvim-telescope/telescope-fzy-native.nvim',
