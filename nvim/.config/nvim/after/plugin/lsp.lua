@@ -11,7 +11,7 @@ lsp.setup_nvim_cmp({
         { name = 'nvim_lua' },
         { name = 'buffer', keyword_length = 5 },
         { name = 'treesitter' },
-        { name = 'cmdline', max_item_count = 5 },
+        -- { name = 'cmdline', max_item_count = 5 },
         { name = 'path', max_item_count = 5 },
         { name = 'spell', max_itemcount = 5 },
     },
