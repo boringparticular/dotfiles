@@ -44,3 +44,7 @@ vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', { silent = true })
 
 vim.keymap.set('n', '<leader>vpp', '<cmd>e ~/.dotfiles/nvim/.config/nvim/init.lua<CR>');
 vim.keymap.set('n', '<leader>mr', '<cmd>CellularAutomaton make_it_rain<CR>');
+
+vim.keymap.set('n', '<leader>cb', '<cmd>bp<CR><cmd>bd#<CR>', { desc = 'Close buffer and keep split' })
+
+vim.keymap.set('n', '<leader>nf', '<cmd>NullFormat<CR>', { desc = 'Format using null-ls' })
