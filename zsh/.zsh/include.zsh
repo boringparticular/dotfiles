@@ -10,12 +10,22 @@ export PATH=$HOME/.cargo/bin:${PATH}
 export VIMCONFIG=$HOME/.config/nvim
 export VIMDATA=$HOME/.local/share/nvim
 
+alias chmod="chmod --preserve-root"
 if [[ -x "$(command -v bat)" ]]; then
   alias cat="bat --paging=never"
 fi
 
 if [[ -x "$(command -v exa)" ]]; then
-  alias ls=exa --icons
+  alias ls=exa
+  alias l='exa -l --all --group-directories-first --git'
+  alias ll='exa -l --all --all --group-directories-first --git'
+  alias lt='exa -T --git-ignore --level=2 --group-directories-first'
+  alias llt='exa -lT --git-ignore --level=2 --group-directories-first'
+  alias lT='exa -T --git-ignore --level=4 --group-directories-first'
+else
+  alias l='ls -lah'
+  alias ll='ls -alF'
+  alias la='ls -A'
 fi
 
 if [[ -x "$(command -v rg)" ]]; then
@@ -93,5 +103,9 @@ if [[ $HOSTNAME = "zeus" ]]; then
         bindkey -s '^\' "^Q clipcat-menu --finder=builtin insert ^J"
         bindkey -s '^]' "^Q clipcat-menu --finder=builtin remove ^J"
     fi
+
+    alias gdl=~/gdl.sh
+    alias jdl=~/jdl.sh
+    alias cdl=~/cdl.sh
 fi
 
