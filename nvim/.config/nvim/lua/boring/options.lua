@@ -41,7 +41,7 @@ vim.opt.spelllang = { 'en_us', 'de_de' }
 vim.opt.spell = true
 
 vim.opt.updatetime = 50
-vim.opt.timeoutlen = 500
+vim.opt.timeoutlen = 100
 
 vim.opt.list = true
 vim.opt.listchars:append('space:⋅')
