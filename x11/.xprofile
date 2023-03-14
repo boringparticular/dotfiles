@@ -1,3 +1,0 @@
- # . $HOME/.xmonadwn
- . $HOME/.xsharedrc
- exec /home/kmies/.cabal/bin/xmonad
