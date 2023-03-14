@@ -1,12 +1,12 @@
 daemonize = true
 max_history = 250
 history_file_path = '/home/kmies/.cache/clipcat/clipcatd/db'
-log_level = 'INFO'
 
 [monitor]
 load_current = true
 enable_clipboard = true
 enable_primary = true
+filter_min_size = 0
 
 [grpc]
 host = '127.0.0.1'
