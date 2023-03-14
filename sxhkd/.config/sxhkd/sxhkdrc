@@ -30,6 +30,3 @@ mod4 + shift + p
 
 mod4 + shift + v
     killall clipcatd ; clipcatd &
-
-Menu
-   sleep 0.5; xdotool keyup Super_L key --clearmodifiers Super_L
