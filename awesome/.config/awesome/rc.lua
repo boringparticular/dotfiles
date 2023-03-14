@@ -378,11 +378,11 @@ globalkeys = gears.table.join(
 			exe_callback = awful.util.eval,
 			history_path = awful.util.get_cache_dir() .. "/history_eval",
 		})
-	end, { description = "lua execute prompt", group = "awesome" }),
+	end, { description = "lua execute prompt", group = "awesome" })
 	-- Menubar
-	awful.key({ modkey }, "p", function()
-		menubar.show()
-	end, { description = "show the menubar", group = "launcher" })
+	-- awful.key({ modkey }, "p", function()
+		-- menubar.show()
+	-- end, { description = "show the menubar", group = "launcher" })
 )
 
 clientkeys = gears.table.join(
