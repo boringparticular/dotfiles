@@ -6,7 +6,7 @@ export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 
-export editor=vim
+export editor=nvim
 
 export fmod_alsa_device=pulse
 
