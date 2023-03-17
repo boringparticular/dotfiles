@@ -2,10 +2,6 @@
 
 . /etc/X11/xinit/xinitrc-common
 
-# Make sure this is before the 'exec' command or it won't be sourced.
-# [ -f /etc/xprofile ] && . /etc/xprofile
-# [ -f ~/.xprofile ] && . ~/.xprofile
-
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
@@ -13,8 +9,6 @@ export XMODIFIERS=@im=fcitx
 export editor=vim
 
 export fmod_alsa_device=pulse
-
-# dbus-update-activation-environment --systemd display
 
 xrdb -merge $home/.xresources
 
@@ -41,7 +35,5 @@ volumeicon &
 clipcatd &
 sxhkd &
 nextcloud &
-
-# dbus-update-activation-environment DISPLAY XAUTHORITY
 
 exec awesome
