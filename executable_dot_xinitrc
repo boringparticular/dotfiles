@@ -26,6 +26,8 @@ if [ -x /usr/bin/nm-applet ] ; then
     nm-applet --sm-disable &
 fi
 
+xhost +si:localuser:$USER
+
 kdwalletd5 &
 export ssh_auth_sock
 
