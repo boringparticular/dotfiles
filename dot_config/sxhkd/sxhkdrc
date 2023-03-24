@@ -1,6 +1,9 @@
 mod4 + shift + Return
     alacritty
 
+mod4 + b
+    alacritty -e distrobox enter boxkit
+
 mod4 + Escape ; {s,r,p,h,shift + h}
     systemctl {suspend,reboot,poweroff,hibernate,suspend-then-hibeernate}
     
