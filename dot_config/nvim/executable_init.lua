@@ -20,7 +20,6 @@ require('lazy').setup({
     'mbbill/undotree',
     'rcarriga/nvim-notify',
     'tpope/vim-fugitive',
-    'numToStr/Comment.nvim',
     'JoosepAlviste/nvim-ts-context-commentstring',
     'beauwilliams/statusline.lua',
     'mattn/emmet-vim',
@@ -150,11 +149,9 @@ require('lazy').setup({
     },
     {
         'numToStr/Comment.nvim',
-        config = true,
-        keys = {
-            'gc',
-            'gb',
-        },
+        config = function()
+            require('Comment').setup()
+        end,
     },
     {
         'nvim-treesitter/nvim-treesitter',
