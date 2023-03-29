@@ -1,6 +1,37 @@
-local lsp = require('lsp-zero')
+local lsp = require('lsp-zero').preset({
+    name = 'recommended',
+    set_lsp_keymaps = false,
+    manage_nvim_cmp = true,
+    suggest_lsp_servers = true,
+})
 
-lsp.preset('recommended')
+lsp.nvim_workspace()
+
+lsp.ensure_installed({
+    'tsserver',
+    'pyright',
+    'eslint',
+    'rust_analyzer',
+    'sumneko_lua',
+    'svelte',
+    'ansiblels',
+})
+
+lsp.format_on_save({
+    servers = {
+        ['lua_ls'] = {'lua'},
+        ['rust_analyzer'] = {'rust'},
+    }
+})
+
+lsp.format_mapping('gq', {
+    servers = {
+        ['lua_ls'] = {'lua'},
+        ['rust_analyzer'] = {'rust'},
+    }
+})
+
+lsp.setup()
 
 lsp.setup_nvim_cmp({
     sources = {
@@ -17,16 +48,6 @@ lsp.setup_nvim_cmp({
     },
 })
 
-lsp.ensure_installed({
-    'tsserver',
-    'pyright',
-    'eslint',
-    'rust_analyzer',
-    'sumneko_lua',
-    'svelte',
-    'ansiblels',
-})
-
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
@@ -39,16 +60,24 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set('n', 'K', function() vim.lsp.buf.hover() end, opts)
+    vim.keymap.set('n', 'gd', function() vim.lsp.buf.definition() end, opts)
+    vim.keymap.set('n', 'gD', function() vim.lsp.buf.declaration() end, opts)
+    vim.keymap.set('n', 'gi', function() vim.lsp.buf.implementation() end, opts)
+    vim.keymap.set('n', 'go', function() vim.lsp.buf.type_definition() end, opts)
+    vim.keymap.set('n', 'gr', function() vim.lsp.buf.reference() end, opts)
+    vim.keymap.set('i', '<C-k>', function() vim.lsp.buf.signature_help() end, opts)
+    vim.keymap.set('n', '<F2>', function() vim.lsp.buf.rename() end, opts)
+    vim.keymap.set('n', '<F4>', function() vim.lsp.buf.code_action() end, opts)
+    vim.keymap.set('n', 'gl', function() vim.diagnostic.open_float() end, opts)
+    vim.keymap.set('n', '[d', function() vim.diagnostic.goto_prev() end, opts)
+    vim.keymap.set('n', ']d', function() vim.diagnostic.goto_next() end, opts)
     vim.keymap.set('n', '<Leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
-    vim.keymap.set('n', '<Leader>vd', function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set('n', '[d', function() vim.diagnostic.goto_next() end, opts)
-    vim.keymap.set('n', ']d', function() vim.diagnostic.goto_prev() end, opts)
-    vim.keymap.set('n', '<Leader>vca', function() vim.lsp.buf.code_action() end, opts)
-    vim.keymap.set('n', '<Leader>vrr', function() vim.lsp.buf.reference() end, opts)
-    vim.keymap.set('n', '<Leader>vrn', function() vim.lsp.buf.rename() end, opts)
-    vim.keymap.set('i', '<C-h>', function() vim.lsp.buf.signature_help() end, opts)
+
+    -- lsp.buffer_autoformat()
+    -- vim.keymap.set({'n', 'x'}, 'gq', function() 
+    --     vim.lsp.buf.format({async =false, timeout_ms = 10000})
+    -- end)
 end)
 
 lsp.setup()
