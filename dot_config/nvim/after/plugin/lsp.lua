@@ -12,7 +12,7 @@ lsp.ensure_installed({
     'pyright',
     'eslint',
     'rust_analyzer',
-    'sumneko_lua',
+    'lua_ls',
     'svelte',
     'ansiblels',
 })
