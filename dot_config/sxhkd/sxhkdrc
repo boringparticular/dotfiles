@@ -4,6 +4,9 @@ mod4 + shift + Return
 mod4 + b
     alacritty -e distrobox enter boxkit
 
+mod4 + t
+    alacritty -e nvim $HOME/Nextcloud/vimwiki/todo.md
+
 mod4 + Escape ; {s,r,p,h,shift + h}
     systemctl {suspend,reboot,poweroff,hibernate,suspend-then-hibeernate}
     
