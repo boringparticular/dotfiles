@@ -3,7 +3,10 @@ setopt emacs
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-export PAGER="most"
+if [[ -x "$(command -v most)" ]]; then
+    export PAGER=most
+fi
+
 export EDITOR=nvim
 export VISUAL=nvim
 export PATH=$HOME/.cargo/bin:${PATH}
@@ -59,7 +62,9 @@ if [[ $HOSTNAME = "zeus" ]]; then
     # alias nvim="TERM=xterm-256:RGB nvim"
     # alias tmux="TERM=xterm tmux"
 
-    eval "$(zoxide init zsh)"
+    if [[ -x "$(command -v zoxide)" ]]; then
+        eval "$(zoxide init zsh)"
+    fi
 
     export PATH=/opt:${PATH}
     export PATH=$HOME/.poetry/bin:${PATH}
@@ -87,10 +92,12 @@ if [[ $HOSTNAME = "zeus" ]]; then
 
     alias luamake=$HOME/code/lua-language-server/3rd/luamake/luamake
 
-    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-    # eval "$(pyenv init -)"
-    # eval "$(pyenv virtualenv-init -)"
-    source $(pyenv root)/completions/pyenv.zsh
+    if [[ -x "$(command -v  pyenv)" ]]; then
+        export PATH="$PYENV_ROOT/bin:$PATH"
+        # eval "$(pyenv init -)"
+        # eval "$(pyenv virtualenv-init -)"
+        source $(pyenv root)/completions/pyenv.zsh
+    fi
 
     if [[ -f "$ZDOTDIR/personal.zsh" ]]; then
         source $ZDOTDIR/personal.zsh
