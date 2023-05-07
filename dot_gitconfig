@@ -5,15 +5,3 @@
 	editor = nvim
 [init]
 	defaultBranch = main
-
-[pull]
-        rebase = true
-
-[rebase]
-        autostash = true
-
-[fetch]
-        prune = true
-
-[diff]
-        colorMoved = "zebra"
