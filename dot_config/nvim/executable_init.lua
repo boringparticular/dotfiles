@@ -61,6 +61,16 @@ require('lazy').setup({
     },
     {
         'nvim-telescope/telescope.nvim',
+        config = function(plug, opts)
+            require('telescope').setup({
+                defaults = {
+                    file_ignore_patterns = {
+                        'node_modules',
+                        '.git',
+                    }
+                }
+            })
+        end,
         dependencies = {
             'nvim-lua/plenary.nvim',
         },
@@ -103,16 +113,22 @@ require('lazy').setup({
             },
         },
     },
-    {
-        'rrethy/vim-hexokinase',
-        build = 'make hexokinase'
-    },
+    -- {
+    --     'rrethy/vim-hexokinase',
+    --     build = 'make hexokinase'
+    -- },
     {
         'VonHeikemen/lsp-zero.nvim',
+        branch = 'v2.x',
         dependencies = {
             -- LSP Support
             'neovim/nvim-lspconfig',
-            'williamboman/mason.nvim',
+            {
+                'williamboman/mason.nvim',
+                build = function()
+                    pcall(vim.cmd, 'MasonUpdate')
+                end
+            },
             'williamboman/mason-lspconfig.nvim',
 
             'onsails/lspkind-nvim',
@@ -202,6 +218,29 @@ require('lazy').setup({
                 max_file_lines = nil,
             },
         },
+    },
+    {
+        'akinsho/flutter-tools.nvim',
+        lazy = false,
+        config = function(plug, opts)
+            require('flutter-tools').setup {}
+        end,
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'stevearc/dressing.nvim', -- optional for vim.ui.select
+        },
+    },
+    {
+        'ellisonleao/glow.nvim',
+        config = true,
+        cmd = 'Glow'
+    },
+    {
+        'iamcco/markdown-preview.nvim',
+        ft = 'markdown',
+        build = function()
+            vim.fn['mkdp#util#install']()
+        end,
     }
 })
 
