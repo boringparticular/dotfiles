@@ -16,5 +16,6 @@ if [[ ${TMUX:+1} ]]; then
 fi
 
 if [ -z "${DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
-    exec startx
+#    exec startx
+     return 0
 fi
