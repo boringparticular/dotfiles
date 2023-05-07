@@ -10,17 +10,21 @@ lsp.nvim_workspace()
 lsp.ensure_installed({
     'tsserver',
     'pyright',
-    'eslint',
-    'rust_analyzer',
+    -- 'eslint',
+    -- 'rust_analyzer',
     'lua_ls',
     'svelte',
     'ansiblels',
 })
 
 lsp.format_on_save({
+    format_opts = {
+        async = false,
+        timeout_ms = 10000,
+    },
     servers = {
         ['lua_ls'] = { 'lua' },
-        ['rust_analyzer'] = { 'rust' },
+        -- ['rust_analyzer'] = { 'rust' },
         ['svelte'] = { 'svelte' },
         ['tsserver'] = { 'typescript' },
         ['pyright'] = { 'python' },
@@ -29,9 +33,13 @@ lsp.format_on_save({
 })
 
 lsp.format_mapping('gq', {
+    format_opts = {
+        async = false,
+        timeout_ms = 10000,
+    },
     servers = {
         ['lua_ls'] = { 'lua' },
-        ['rust_analyzer'] = { 'rust' },
+        -- ['rust_analyzer'] = { 'rust' },
         ['svelte'] = { 'svelte' },
         ['tsserver'] = { 'typescript' },
         ['pyright'] = { 'python' },
@@ -101,6 +109,7 @@ local null_ls = require('null-ls')
 local null_opts = lsp.build_options('null-ls', {})
 
 null_ls.setup({
+    debug = true,
     on_attach = function(client, bufnr)
         null_opts.on_attach(client, bufnr)
         --
@@ -120,12 +129,13 @@ null_ls.setup({
         --         })
     end,
     sources = {
-        null_ls.builtins.diagnostics.yamllint,
-        -- null_ls.builtins.formatting.stylua,
+        null_ls.builtins.formatting.stylua,
         null_ls.builtins.formatting.black,
+        null_ls.builtins.formatting.isort,
         null_ls.builtins.formatting.prettierd,
         null_ls.builtins.diagnostics.flake8,
         null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.diagnostics.yamllint,
     },
 })
 
@@ -135,4 +145,10 @@ require('mason-null-ls').setup({
     automatic_setup = true,
 })
 
-require('mason-null-ls').setup_handlers()
+local dart_lsp = lsp.build_options('dartls', {})
+
+require('flutter-tools').setup({
+    lsp = {
+        capabilities = dart_lsp.capabilities
+    }
+})
