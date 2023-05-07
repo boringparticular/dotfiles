@@ -1,5 +1,5 @@
 setopt emacs
-2
+
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
@@ -58,7 +58,7 @@ fvim() { nvim $(find | fzy) }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if [[ $HOSTNAME = "zeus" ]]; then
+if [[ $HOSTNAME = *zeus ]]; then
     # alias nvim="TERM=xterm-256:RGB nvim"
     # alias tmux="TERM=xterm tmux"
 
@@ -73,13 +73,16 @@ if [[ $HOSTNAME = "zeus" ]]; then
     export PATH=$HOME/flutter/bin:${PATH}
     export PATH=$HOME/code/flutter/bin:${PATH}
 
-    export PATH=$HOME/data/android/Sdk/tools:${PATH}
-    export PATH=$HOE/data/android/Sdk/platform-tools:${PATH}
-    export ANDROID_SDK_HOME=$HOME/data/android/Sdk
+    export PATH=$HOME/Android/Sdk/tools:${PATH}
+    export PATH=$HOME/Android/Sdk/platform-tools:${PATH}
+    export ANDROID_SDK_HOME=$HOME/Android/Sdk
 
     # pnpm
     export PNPM_HOME="$HOME/.local/share/pnpm"
-    export PATH="$PNPM_HOME:$PATH"
+    case ":$PATH:" in
+      *":$PNPM_HOME:"*) ;;
+      *) export PATH="$PNPM_HOME:$PATH" ;;
+    esac
     # pnpm end
 
     export GOPATH=$HOME/go
@@ -111,8 +114,16 @@ if [[ $HOSTNAME = "zeus" ]]; then
         bindkey -s '^]' "^Q clipcat-menu --finder=builtin remove ^J"
     fi
 
+    export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+
     alias gdl=~/gdl.sh
     alias jdl=~/jdl.sh
     alias cdl=~/cdl.sh
+
+    alias boxkit="distrobox enter boxkit"
+
+    function gi() { 
+        curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;
+    }
 fi
 
