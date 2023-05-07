@@ -124,8 +124,6 @@ if [[ $HOSTNAME = *zeus ]]; then
 
     alias boxkit="distrobox enter boxkit"
 
-    alias vimdiff="nvim -d"
-
     function gi() { 
         curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;
     }
