@@ -15,7 +15,6 @@ lsp.ensure_installed({
     'lua_ls',
     'svelte',
     'ansiblels',
-    'nil_ls',
 })
 
 lsp.format_on_save({
@@ -99,7 +98,7 @@ lsp.setup_nvim_cmp({
         -- local cmp_select = { behavior = cmp.SelectBehavior.Select }
         ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+        -- ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
     }),
 })
