@@ -15,6 +15,7 @@ lsp.ensure_installed({
     'lua_ls',
     'svelte',
     'ansiblels',
+    'nil_ls',
 })
 
 lsp.format_on_save({
