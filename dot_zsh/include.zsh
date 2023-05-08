@@ -39,6 +39,11 @@ if [[ -x "$(command -v btm)" ]]; then
   alias top=btm
 fi
 
+if [[ -x "$(command -v direnv)" ]]; then
+  eval "$(direnv hook zsh)"
+fi
+
+
 alias vi=nvim
 alias vim=nvim
 alias docker=podman
