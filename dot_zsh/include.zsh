@@ -126,6 +126,8 @@ if [[ $HOSTNAME = *zeus ]]; then
 
     alias boxkit="distrobox enter boxkit"
 
+    alias rebuild="just -f ~/.dotfiles/justfile -d ~/.dotfiles"
+
     function gi() { 
         curl -sLw "\n" https://www.toptal.com/developers/gitignore/api/$@ ;
     }
