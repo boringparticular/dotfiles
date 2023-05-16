@@ -83,7 +83,7 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 local cmp = require('cmp')
-
+cmp.SelectBehavior = insert;
 lsp.setup_nvim_cmp({
     sources = {
         { name = 'nvim_lsp' },
@@ -98,7 +98,6 @@ lsp.setup_nvim_cmp({
         { name = 'spell',                   max_itemcount = 5 },
     },
     mapping = lsp.defaults.cmp_mappings({
-        local cmp_select = { behavior = cmp.SelectBehavior.Insert }
         -- ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         -- ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         -- ['<C-y>'] = cmp.mapping.confirm({ select = true }),
