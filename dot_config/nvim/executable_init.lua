@@ -15,7 +15,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-    'windwp/nvim-autopairs',
+    {
+        'windwp/nvim-autopairs',
+        config = function()
+            require('windwp/nvim-autopairs').setup()
+        end,
+    },
     'ThePrimeagen/harpoon',
     'stevearc/dressing.nvim',
     'mbbill/undotree',
