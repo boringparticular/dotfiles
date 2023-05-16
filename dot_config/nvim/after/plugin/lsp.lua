@@ -84,7 +84,6 @@ end)
 
 local cmp = require('cmp')
 lsp.setup_nvim_cmp({
-    -- preselect = 'item',
     sources = {
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
@@ -101,7 +100,7 @@ lsp.setup_nvim_cmp({
         -- ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
         -- ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         -- ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.SelectBehavior.Insert }),
         ['<C-Space>'] = cmp.mapping.complete(),
     }),
 })
