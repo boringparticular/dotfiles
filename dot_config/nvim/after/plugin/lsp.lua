@@ -84,7 +84,7 @@ end)
 
 local cmp = require('cmp')
 lsp.setup_nvim_cmp({
-    preselect = 'item',
+    -- preselect = 'item',
     sources = {
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
