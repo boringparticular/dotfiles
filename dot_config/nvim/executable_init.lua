@@ -18,7 +18,7 @@ require('lazy').setup({
     {
         'windwp/nvim-autopairs',
         config = function()
-            require('windwp/nvim-autopairs').setup()
+            require('nvim-autopairs').setup()
         end,
     },
     'ThePrimeagen/harpoon',
