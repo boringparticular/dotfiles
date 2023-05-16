@@ -98,9 +98,9 @@ lsp.setup_nvim_cmp({
         { name = 'spell',                   max_itemcount = 5 },
     },
     mapping = lsp.defaults.cmp_mappings({
-        -- local cmp_select = { behavior = cmp.SelectBehavior.Select }
-        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+        local cmp_select = { behavior = cmp.SelectBehavior.Insert }
+        -- ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+        -- ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
         -- ['<C-y>'] = cmp.mapping.confirm({ select = true }),
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
         ['<C-Space>'] = cmp.mapping.complete(),
