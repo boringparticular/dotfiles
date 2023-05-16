@@ -83,8 +83,8 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 local cmp = require('cmp')
-cmp.SelectBehavior = insert;
 lsp.setup_nvim_cmp({
+    preselect = 'item',
     sources = {
         { name = 'nvim_lsp' },
         { name = 'nvim_lsp_signature_help' },
