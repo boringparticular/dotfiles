@@ -32,6 +32,7 @@ lsp.format_on_save({
         ['tsserver'] = { 'typescript' },
         ['pyright'] = { 'python' },
         ['html'] = { 'html' },
+        ['rnix'] = { 'nix' },
     }
 })
 
