@@ -62,7 +62,7 @@ fvim() { nvim $(find | fzy) }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-if [[ $HOST= *zeus ]]; then
+if [[ $HOST = *zeus ]]; then
     # alias nvim="TERM=xterm-256:RGB nvim"
     # alias tmux="TERM=xterm tmux"
 
