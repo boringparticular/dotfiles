@@ -66,6 +66,7 @@ if [[ $HOSTNAME = *zeus ]]; then
     # alias nvim="TERM=xterm-256:RGB nvim"
     # alias tmux="TERM=xterm tmux"
 
+    echo "AAA"
     if [[ -x "$(command -v zoxide)" ]]; then
         eval "$(zoxide init zsh)"
     fi
