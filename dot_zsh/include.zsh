@@ -1,7 +1,7 @@
 setopt emacs
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# export LC_ALL=en_US.UTF-8
+# export LANG=en_US.UTF-8
 
 if [[ -x "$(command -v most)" ]]; then
     export PAGER=most
@@ -118,7 +118,7 @@ if [[ $HOST = *zeus ]]; then
         bindkey -s '^]' "^Q clipcat-menu --finder=builtin remove ^J"
     fi
 
-    export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
+    # export LOCALE_ARCHIVE=/usr/lib/locale/locale-archive
 
     alias gdl=~/gdl.sh
     alias jdl=~/jdl.sh
