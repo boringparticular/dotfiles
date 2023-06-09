@@ -30,7 +30,7 @@ lsp.format_on_save({
         -- ['rust_analyzer'] = { 'rust' },
         ['svelte'] = { 'svelte' },
         ['tsserver'] = { 'typescript' },
-        ['pyright'] = { 'python' },
+        ['null-ls'] = { 'python' },
         ['html'] = { 'html' },
         ['rnix'] = { 'nix' },
     }
@@ -46,7 +46,7 @@ lsp.format_mapping('gq', {
         -- ['rust_analyzer'] = { 'rust' },
         ['svelte'] = { 'svelte' },
         ['tsserver'] = { 'typescript' },
-        ['pyright'] = { 'python' },
+        ['null-ls'] = { 'python' },
         ['html'] = { 'html' },
     }
 })
