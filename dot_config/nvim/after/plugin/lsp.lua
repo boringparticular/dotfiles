@@ -84,6 +84,9 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 local cmp = require('cmp')
+
+require('luasnip.loaders.from_vscode').lazy_load()
+
 lsp.setup_nvim_cmp({
     preselect = 'item',
     completion = {
