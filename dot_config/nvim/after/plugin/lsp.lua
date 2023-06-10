@@ -30,7 +30,7 @@ lsp.format_on_save({
         -- ['rust_analyzer'] = { 'rust' },
         ['svelte'] = { 'svelte' },
         ['tsserver'] = { 'typescript' },
-        ['null-ls'] = { 'python' },
+        ['pylsp'] = { 'python' },
         ['html'] = { 'html' },
         ['rnix'] = { 'nix' },
     }
