@@ -32,6 +32,15 @@ require('lazy').setup({
     'nvim-telescope/telescope-fzy-native.nvim',
     'lewis6991/gitsigns.nvim',
     {
+        'folke/todo-comments.nvim',
+        dependencies = {
+            'nvim-lua/plenary.nvim'
+        },
+        opts = {
+
+        },
+    },
+    {
         'folke/trouble.nvim',
         dependencies = {
             'nvim-tree/nvim-web-devicons',
