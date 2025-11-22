@@ -1,0 +1,84 @@
+$EDITOR = "nvim"
+$XONSH_SHOW_TRACEBACK = False
+$AUTO_CD = True
+$AUTO_PUSHD = True
+$COLOR_RESULTS = True
+$ENABLE_ASYNC_PROMPT = True
+$HISTCONTROL = {'ignorespace', 'erasedups'}
+$XONSH_HISTORY_BACKEND = 'sqlite'
+$XONSH_HISTORY_SIZE = (2**18, 'commands')
+$XONSH_STORE_STDOUT = True
+$XONSH_AUTOPAIR = False
+$VI_MODE = False
+$MOUSE_SUPPORT = False
+$ALIAS_COMPLETIONS_OPTIONS_BY_DEFAULT = True
+$AUTO_SUGGEST = True
+$AUTO_SUGGEST_IN_COMPLETIONS = False
+$CASE_SENSITIVE_COMPLETIONS = False
+$COMPLETION_IN_THREAD = True
+$COMPLETION_MODE = 'default'
+$COMPLETIONS_DISPLAY = 'multi'
+$COMPLETIONS_BRACKETS = True
+$COMPLETIONS_CONFIRM = True
+$UPDATE_COMPLETIONS_ON_KEYPRESS = False
+$CMD_COMPLETIONS_SHOW_DESC = True
+# TODO: How to do that?
+$BASH_COMPLETIONS = '${pkgs.bash-completion}/share/bash-completion/bash_completion'
+# $XONSH_COLOR_STYLE = 'monokai'
+
+source $XDG_CONFIG_HOME/xonsh/catppuccin.xsh
+$XONSH_COLOR_STYLE = 'catppuccin-mocha'
+
+xontrib load abbrevs
+xontrib load fish_completer
+xontrib load direnv
+# xontrib load zoxide
+
+abbrevs['gia'] = 'git add'
+abbrevs['gp'] = 'git push'
+abbrevs['gR'] = 'git remote'
+
+abbrevs['gl'] = 'git log --topo-order --pretty=format:"$_git_log_medium_format"'
+abbrevs['gls'] = 'git log --topo-order --stat --pretty=format:"$_git_log_medium_format"'
+abbrevs['gld'] = 'git log --topo-order --stat --patch --full-diff --pretty=format:"$_git_log_medium_format"'
+abbrevs['glo'] = 'git log --topo-order --pretty=format:"$_git_log_oneline_format"'
+abbrevs['glg'] = 'git log --topo-order --graph --pretty=format:"$_git_log_oneline_format"'
+abbrevs['glb'] = 'git log --topo-order --pretty=format:"$_git_log_brief_format"'
+abbrevs['glc'] = 'git shortlog --summary --numbered'
+abbrevs['glS'] = 'git log --show-signature'
+
+aliases['rm'] = 'rm -i'
+aliases['cp'] = 'cp -i'
+aliases['mv'] = 'mv -i'
+aliases['cat'] = 'bat --paging=never'
+aliases['ls'] = 'eza'
+aliases['l'] = 'eza -l --all --group-directories-first --git'
+aliases['ll'] = 'eza -l --all --all --group-directories-first --git'
+aliases['lt'] = 'eza -T --git-ignore --level=2 --group-directories-first'
+aliases['llt'] = 'eza -lT --git-ignore --level=2 --group-directories-first'
+aliases['lT'] = 'eza -T --git-ignore --level=4 --group-directories-first'
+aliases['grep'] = 'rg'
+aliases['top'] = 'btm'
+aliases['dd'] = 'dd status=progress'
+
+# TODO: Should be private
+aliases['athena'] = 'ssh kmies@athena.edgecube.io'
+aliases['hermes'] = 'ssh kmies@hermes.edgecube.io'
+aliases['demeter'] = 'ssh kmies@192.168.15.23'
+
+aliases['nnvim'] = 'nix run "github:boringparticular/nixCats" -- '
+
+aliases['srg'] = "steam-run gamemoderun"
+aliases['srgm'] = "steam-run gamemoderun mangohud"
+
+source-bash /home/kmies/.guix-profile/etc/profile
+$GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+
+execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
+execx($(/etc/profiles/per-user/kmies/bin/starship init xonsh --print-full-init))
+exec($(carapace _carapace xonsh))
+execx($(atuin init xonsh))
+# TODO: how to do this?
+# execx($(${pkgs.any-nix-shell}/bin/any-nix-shell xonsh --info-right))
+
+# vim:tw=78:ts=8:noet:ft=python:norl:
