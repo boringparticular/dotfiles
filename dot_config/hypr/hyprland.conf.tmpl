@@ -1,0 +1,165 @@
+# TODO: Do I have access to dbus-update-activation-environment when the config is loaded?
+# TODO: Deal with nix store paths
+exec-once = dbus-update-activation-environment --systemd DISPLAY HYPRLAND_INSTANCE_SIGNATURE WAYLAND_DISPLAY XDG_CURRENT_DESKTOP && systemctl --user stop hyprland-session.target && systemctl --user start hyprland-session.target
+# TODO: Do I need hyprpolkit or is the gnome one running
+exec-once = systemctl --user start hyprpolkitagent
+exec-once = wl-paste --type text --watch cliphist store & #Stores only text data
+exec-once = wl-paste --type image --watch cliphist store & #Stores only image data
+# exec-once = wl-paste --primary --watch wl-copy & # synchronize clipboards
+exec-once = systemctl --user enable --now hyprpaper.service
+exec-once = systemctl --user restart waybar
+
+$mainMod=SUPER
+
+decoration {
+  shadow {
+    color=rgba({{ .theme.colors.base00 }}99)
+  }
+  rounding=5
+}
+
+dwindle {
+  preserve_split=true
+  pseudotile=true
+}
+
+general {
+  border_size=5
+  col.active_border=rgb({{ .theme.colors.base0D }})
+  col.inactive_border=rgb({{ .theme.colors.base03 }})
+}
+
+group {
+  groupbar {
+    col.active=rgb({{ .theme.colors.base0D }})
+    col.inactive=rgb({{ .theme.colors.base03 }})
+    text_color=rgb({{ .theme.colors.base05 }})
+  }
+  col.border_active=rgb({{ .theme.colors.base0D }})
+  col.border_inactive=rgb({{ .theme.colors.base03 }})
+  col.border_locked_active=rgb({{ .theme.colors.base0C }})
+}
+
+input {
+  follow_mouse=2
+  kb_layout=us,kr
+  kb_variant=altgr-intl,
+}
+
+misc {
+  background_color=rgb({{ .theme.colors.base00 }})
+}
+
+bind=$mainMod, RETURN, exec, uwsm app -- ghostty
+bind=$mainMod, 1, workspace, 1
+bind=$mainMod, 2, workspace, 2
+bind=$mainMod, 3, workspace, 3
+bind=$mainMod, 4, workspace, 4
+bind=$mainMod, 5, workspace, 5
+bind=$mainMod, 6, workspace, 6
+bind=$mainMod, 7, workspace, 7
+bind=$mainMod, 8, workspace, 8
+bind=$mainMod, 9, workspace, 9
+bind=$mainMod SHIFT, 1, movetoworkspacesilent, 1
+bind=$mainMod_SHIFT, 2, movetoworkspacesilent, 2
+bind=$mainMod_SHIFT, 3, movetoworkspacesilent, 3
+bind=$mainMod_SHIFT, 4, movetoworkspacesilent, 4
+bind=$mainMod_SHIFT, 5, movetoworkspacesilent, 5
+bind=$mainMod_SHIFT, 6, movetoworkspacesilent, 6
+bind=$mainMod_SHIFT, 7, movetoworkspacesilent, 7
+bind=$mainMod_SHIFT, 8, movetoworkspacesilent, 8
+bind=$mainMod_SHIFT, 9, movetoworkspacesilent, 9
+bind=$mainMod, H, movefocus, l
+bind=$mainMod, J, movefocus, d
+bind=$mainMod, K, movefocus, u
+bind=$mainMod, L, movefocus, r
+bind=$mainMod_SHIFT, H, movewindow, l
+bind=$mainMod_SHIFT, J, movewindow, d
+bind=$mainMod_SHIFT, K, movewindow, u
+bind=$mainMod_SHIFT, L, movewindow, r
+bind=$mainMod, C, movetoworkspace, special
+bind=$mainMod, TAB, focuscurrentorlast
+bind=$mainMod, S, pseudo,
+bind=$mainMod, SPACE, togglefloating,
+bind=$mainMod, D, exec, rofi -show combi
+bind=$mainMod, V, exec, cliphist list | rofi -dmenu | cliphist decode | wl-copy
+bind=$mainMod, F, fullscreen,1
+bind=$mainMod_SHIFT, F, fullscreen,
+bind=$mainMod, O, movewindow, mon:+1
+bind=$mainMod, Q, killactive
+bind=$mainMod_SHIFT, Q, exec, uwsm stop
+bind=$mainMod_SHIFT, R, exec, hyprctl reload
+bind=, XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+bind=$mainMod, mouse_down, workspace, e+1
+bind=$mainMod, mouse_up, workspace, e-1
+bind=$mainMod_CTRL, A, cyclenext,
+bind=$mainMod_CTRL, S, swapnext,
+bind=$mainMod, Print, exec, grim -g "$(slurp)"
+bind=$mainMod_SHIFT, Print, exec, grim -g "$(slurp)" - | wl-copy
+bind=$mainMod, F12, exec, hyprpicker -a
+bind=$mainMod, m, movetoworkspacesilent, special:minimized
+binde=, XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+binde=, XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+bindm=$mainMod, mouse:272, movewindow
+bindm=$mainMod, mouse:273, resizewindow
+
+# TODO: This is device specific
+monitor=HDMI-A-1,2560x1080,0x0,1
+monitor=DVI-D-1,1920x1080,2560x0,1
+workspace=1,monitor:HDMI-A-1
+workspace=2,monitor:HDMI-A-1
+workspace=3,monitor:HDMI-A-1
+workspace=4,monitor:HDMI-A-1
+workspace=5,monitor:HDMI-A-1
+workspace=6,monitor:HDMI-A-1
+workspace=7,monitor:HDMI-A-1
+workspace=8,monitor:DVI-D-1
+workspace=9,monitor:DVI-D-1
+workspace=special:minimized
+workspace=special:scratchpad
+bind = $mainMod, escape, submap, power
+submap = power
+
+bind = , L, exec, hyprlock
+bind = , L, submap, reset
+
+bind = , S, exec, systemctl suspend
+
+bind = , S, submap, reset
+
+bind = , R, exec, systemctl reboot
+bind = , R, submap, reset
+
+bind = , P, exec, systemctl poweroff
+bind = , P, submap, reset
+
+bind = , H, exec, systemctl hibernate
+bind = , H, submap, reset
+
+bind = SHIFT, H, exec, systemctl suspend-then-hibernate
+bind = SHIFT, H, submap, reset
+
+# bind = , escape, submap, reset
+bind = , catchall, submap, reset
+
+submap = reset
+
+bind = $mainMod, R, submap, resize
+submap = resize
+binde = , H, resizeactive, -10 0
+binde = , L, resizeactive, 10 0
+binde = , K, resizeactive, 0 -10
+binde = , J, resizeactive, 0 10
+bind = , escape, submap, reset
+submap = reset
+
+device {
+    name = wacom-bamboo-pen-pen
+    output = HDMI-A-1
+  }
+
+misc {
+    enable_anr_dialog = false
+}
+
+# vim:ft=hyprlang
