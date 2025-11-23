@@ -73,10 +73,9 @@ source-bash /home/kmies/.guix-profile/etc/profile
 $GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 
 execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
-execx($(/etc/profiles/per-user/kmies/bin/starship init xonsh --print-full-init))
+execx($(starship init xonsh --print-full-init))
 exec($(carapace _carapace xonsh))
 execx($(atuin init xonsh))
-# TODO: how to do this?
-# execx($(${pkgs.any-nix-shell}/bin/any-nix-shell xonsh --info-right))
+execx($(any-nix-shell xonsh --info-right))
 
 # vim:tw=78:ts=8:noet:ft=python:norl:
