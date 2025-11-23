@@ -6,3 +6,19 @@ derive_color_formats.py
 shell.nix
 .envrc
 .direnv
+{{- if ne .chezmoi.hostname "zeus" }}
+dot_local
+dot_config/anyrun
+dot_config/eww
+dot_config/foot
+dot_config/fuzzel
+dot_config/gammastep
+dot_config/ghostty
+dot_config/hypr
+dot_config/mako
+dot_config/niri
+dot_config/rofi
+dot_config/uwsm
+dot_config/waybar
+dot_config/wezterm
+{{- end}}
