@@ -1,0 +1,26 @@
+anchor=top-center
+background-color=#{{ .theme.colors.base00 }}FF
+border-color=#{{ .theme.colors.base0D }}
+border-radius=2
+border-size=3
+default-timeout=6000
+font={{ .theme.fonts.sansSerif }} {{ .theme.fonts.sizes.popups }}
+format=<i>%a</i>\n<b>%s</b>\n%b
+height=280
+icons=true
+padding=10
+progress-color=over #{{ .theme.colors.base02 }}
+text-color=#{{ .theme.colors.base05 }}
+width=400
+
+[urgency=critical]
+background-color=#{{ .theme.colors.base00 }}FF
+border-color=#{{ .theme.colors.base08 }}
+text-color=#{{ .theme.colors.base05 }}
+
+[urgency=low]
+background-color=#{{ .theme.colors.base00 }}FF
+border-color=#{{ .theme.colors.base03 }}
+text-color=#{{ .theme.colors.base05 }}
+
+# vim:ft=ini
