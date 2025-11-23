@@ -1,0 +1,8 @@
+keymap: []
+modmap:
+- name: Global
+  remap:
+    CapsLock:
+      alone: Esc
+      held: LeftCtrl
+    Compose: LeftMeta
