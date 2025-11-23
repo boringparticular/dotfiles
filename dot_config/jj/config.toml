@@ -33,8 +33,8 @@ editor = ["nvim", "--cmd", "let g:flatten_wait=1"]
 diff-formatter = "difft"
 
 # split, squash
-# diff-editor = "meld-3"
-diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+diff-editor = "meld-3"
+# diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
 
 # resolve
 merge-editor = "meld-3"
