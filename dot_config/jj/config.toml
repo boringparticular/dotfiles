@@ -1,0 +1,143 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+# [fsmonitor]
+# backend = "watchman"
+# watchman.register-snapshot-trigger = true
+
+[user]
+email = "15252288+boringparticular@users.noreply.github.com"
+name = "Kai Mies"
+
+[[--scope]]
+--when.commands = ["diff", "show"]
+[--scope.ui]
+diff-formatter = ":git"
+pager = "delta"
+
+[ui]
+paginate = "auto"
+should-sign-off = true
+graph.style = "square"
+log-synthetic-elided-nodes = true
+
+# Shows a single snapshot and one or more diffs to apply to it
+# conflict-marker-style = "diff"
+# Shows a snapshot for each side and base of the conflict
+# conflict-marker-style = "snapshot"
+# Uses Git's "diff3" conflict markers to support tools that depend on it
+conflict-marker-style = "git"
+
+# editor = "nvim"
+editor = ["nvim", "--cmd", "let g:flatten_wait=1"]
+
+diff-formatter = "difft"
+
+# split, squash
+# diff-editor = "meld-3"
+diff-editor = ["nvim", "-c", "DiffEditor $left $right $output"]
+
+# resolve
+merge-editor = "meld-3"
+
+[ui.movement]
+edit = true
+
+[merge-tools.delta]
+diff-args = ["$left", "$right", "--navigate", "--line-numbers", "--diff-so-fancy"]
+diff-expected-exit-codes = [0, 1]
+
+[merge-tools.difft]
+diff-args = [
+    "--display",
+    "side-by-side",
+    "--color",
+    "always",
+    "--sort-paths",
+    "$left",
+    "$right",
+    "--width",
+    "$width",
+]
+
+[merge-tools.diffti]
+program = "difft"
+diff-args = [
+    "--display",
+    "inline",
+    "--color",
+    "always",
+    "--sort-paths",
+    "$left",
+    "$right",
+]
+
+[merge-tools.meld]
+# defaults
+# edit-args = ["$left", "$right"]
+# merge-args = ["$left", "$base", "$right", "-o", "$output", "--auto-merge"]
+
+edit-args = ["$left", "$right", "--newtab"]
+merge-tool-edits-conflict-markers = true
+
+[merge-tools.meld-3]
+# defaults
+# diff-args = ["$left", "$right"]  # Same as the default value
+# If using this as a template, note that `$output` is repeated twice below
+# edit-args = ["$left", "$output", "$right", "-o", "$output"]
+
+merge-args = [
+    "$left",
+    "$base",
+    "$right",
+    "-o",
+    "$output",
+    "--newtab",
+    "--auto-merge",
+]
+merge-tool-edits-conflict-markers = true
+program = "meld"
+
+[merge-tools.mergiraf]
+# defaults
+# merge-args = ["merge", "$base", "$left", "$right", "-o", "$output", "-l", "$marker_length", "-p", "$path", "--fast"]
+
+merge-conflict-exit-codes = [1]
+merge-args = [
+    "merge",
+    "$base",
+    "$left",
+    "$right",
+    "-o",
+    "$output",
+    "--fast",
+]
+
+[merge-tools.hunk]
+program = "nvim"
+edit-args = ["-c", "DiffEditor $left $right $output"]
+merge-args = ["-c", "DiffEditor $left $right $output"]
+merge-tool-edits-conflict-markers = true
+
+[merge-tools.neovim]
+program = "sh"
+edit-args = [
+  "-c",
+  """
+    set -eu
+    rm -f "$right/JJ-INSTRUCTIONS"
+    git -C "$left" init -q
+    git -C "$left" add -A
+    git -C "$left" commit -q -m baseline --allow-empty # create parent commit
+    mv "$left/.git" "$right"
+    git -C "$right" add --intent-to-add -A # create current working copy
+    (cd "$right"; nvim)
+    git -C "$right" diff-index --quiet --cached HEAD && { echo "No changes done, aborting split."; exit 1; }
+    git -C "$right" commit -q -m split # create commit on top of parent including changes
+    git -C "$right" restore . # undo changes in modified files
+    git -C "$right" reset .   # undo --intent-to-add
+    git -C "$right" clean -q -df # remove untracked files
+  """
+]
+
+[aliases]
+l = ["log", "--no-pager", "--reversed"]
