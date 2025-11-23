@@ -1,0 +1,59 @@
+# default statusbar colors
+set-option -g status-style "fg=#{{ .theme.palette.base04 }},bg=#{{ .theme.palette.base01 }}"
+
+# default window title colors
+set-window-option -g window-status-style "fg=#{{ .theme.palette.base04 }},bg=#{{ .theme.palette.base01 }}"
+
+# active window title colors
+set-window-option -g window-status-current-style "fg=#{{ .theme.palette.base0A }},bg=#{{ .theme.palette.base01 }}"
+
+# pane border
+set-option -g pane-border-style "fg=#{{ .theme.palette.base01 }}"
+set-option -g pane-active-border-style "fg=#{{ .theme.palette.base04 }}"
+
+# message text
+set-option -g message-style "fg=#{{ .theme.palette.base06 }},bg=#{{ .theme.palette.base02 }}"
+
+# pane number display
+set-option -g display-panes-active-colour "#{{ .theme.palette.base04 }}"
+set-option -g display-panes-colour "#{{ .theme.palette.base01 }}"
+
+# clock
+set-window-option -g clock-mode-colour "#{{ .theme.palette.base0D }}"
+
+# copy mode highlight
+set-window-option -g mode-style "fg=#{{ .theme.palette.base04 }},bg=#{{ .theme.palette.base02 }}"
+
+# bell
+set-window-option -g window-status-bell-style "fg=#{{ .theme.palette.base00 }},bg=#{{ .theme.palette.base08 }}"
+
+# style for window titles with activity
+set-window-option -g window-status-activity-style "fg=#{{ .theme.palette.base05 }},bg=#{{ .theme.palette.base01 }}"
+
+# style for command messages
+set-option -g message-command-style "fg=#{{ .theme.palette.base06 }},bg=#{{ .theme.palette.base02 }}"
+
+# Optional active/inactive pane state
+# BASE16_TMUX_OPTION_ACTIVE is a legacy variable
+if-shell '[ "$TINTED_TMUX_OPTION_ACTIVE" = "1" ] || [ "$BASE16_TMUX_OPTION_ACTIVE" = "1" ]' {
+  set-window-option -g window-active-style "fg=#{{ .theme.palette.base05 }},bg=#{{ .theme.palette.base00 }}"
+  set-window-option -g window-style "fg=#{{ .theme.palette.base05 }},bg=#{{ .theme.palette.base01 }}"
+}
+
+# Optional statusbar
+# BASE16_TMUX_OPTION_STATUSBAR is a legacy variable
+if-shell '[ "$TINTED_TMUX_OPTION_STATUSBAR" = "1" ] || [ "$BASE16_TMUX_OPTION_STATUSBAR" = "1" ]' {
+  set-option -g status "on"
+  set-option -g status-justify "left"
+  set-option -g status-left "#[fg=#{{ .theme.palette.base05 }},bg=#{{ .theme.palette.base03 }}] #S #[fg=#{{ .theme.palette.base03 }},bg=#{{ .theme.palette.base01 }},nobold,noitalics,nounderscore]"
+  set-option -g status-left-length "80"
+  set-option -g status-left-style none
+  set-option -g status-right "#[fg=#{{ .theme.palette.base02 }},bg=#{{ .theme.palette.base01 }} nobold, nounderscore, noitalics]#[fg=#{{ .theme.palette.base04 }},bg=#{{ .theme.palette.base02 }}] %Y-%m-%d  %H:%M #[fg=#{{ .theme.palette.base05 }},bg=#{{ .theme.palette.base02 }},nobold,noitalics,nounderscore]#[fg=#{{ .theme.palette.base01 }},bg=#{{ .theme.palette.base05 }}] #h "
+  set-option -g status-right-length "80"
+  set-option -g status-right-style none
+  set-window-option -g window-status-current-format "#[fg=#{{ .theme.palette.base01 }},bg=#{{ .theme.palette.base0A }},nobold,noitalics,nounderscore]#[fg=#{{ .theme.palette.base02 }},bg=#{{ .theme.palette.base0A }}] #I #[fg=#{{ .theme.palette.base02 }},bg=#{{ .theme.palette.base0A }},bold] #W#{?window_zoomed_flag,*Z,} #[fg=#{{ .theme.palette.base0A }},bg=#{{ .theme.palette.base01 }},nobold,noitalics,nounderscore]"
+  set-window-option -g window-status-format "#[fg=#{{ .theme.palette.base01 }},bg=#{{ .theme.palette.base02 }},noitalics]#[fg=#{{ .theme.palette.base06 }},bg=#{{ .theme.palette.base02 }}] #I #[fg=#{{ .theme.palette.base06 }},bg=#{{ .theme.palette.base02 }}] #W#{?window_zoomed_flag,*Z,} #[fg=#{{ .theme.palette.base02 }},bg=#{{ .theme.palette.base01 }},noitalics]"
+  set-window-option -g window-status-separator ""
+}
+
+# vim: set ft=tmux tw=0:
