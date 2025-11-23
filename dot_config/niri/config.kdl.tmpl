@@ -9,16 +9,8 @@
 input {
     keyboard {
         xkb {
-            // You can set rules, model, layout, variant and options.
-            // For more information, see xkeyboard-config(7).
-
-            // For example:
-            // layout "us,ru"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
-
-            // If this section is empty, niri will fetch xkb settings
-            // from org.freedesktop.locale1. You can control these using
-            // localectl set-x11-keymap.
+            layout "us,kr"
+            variant "altgr-intl,"
         }
 
         // Enable numlock on startup, omitting this setting disables it.
@@ -68,6 +60,7 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 1.0
 
         // Fixed sets the width in logical pixels exactly.
         // fixed 1920
@@ -76,17 +69,20 @@ layout {
     // You can also customize the heights that "switch-preset-window-height" (Mod+Shift+R) toggles between.
     // preset-window-heights { }
 
-    default-column-width {}
+    default-column-width {
+        proportion 0.5
+    }
+
     focus-ring {
         // Uncomment this line to disable the focus ring.
-        // off
+        off
         width 4
         // Colors can be set in a variety of ways:
         // - CSS named colors: "red"
         // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
         // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
-        active-color "#7fc8ff"
-        inactive-color "#505050"
+        active-color "{{ .theme.palette.base0D }}"
+        inactive-color "{{ .theme.palette.base03 }}"
     }
 
     border {
@@ -101,24 +97,26 @@ layout {
         softness 30
         spread 5
         offset x=0 y=5
-        color "#0007"
+        color "#{{ .theme.palette.base00 }}"
     }
 
     struts {
-        left 64
-        right 64
-        top 64
-        bottom 64
+        left 10
+        right 10
+        top 10
+        bottom 10
     }
 }
 
 cursor {
     xcursor-theme "phinger-cursors-light"
-    xcursor-size 48
+    xcursor-size 32
 }
 
+spawn-at-startup "qs" "-c" "noctalia-shell"
+
 // This line starts waybar, a commonly used bar for Wayland compositors.
-spawn-at-startup "waybar"
+// spawn-at-startup "waybar"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -144,6 +142,48 @@ animations {
 // Find more information on the wiki:
 // https://yalter.github.io/niri/Configuration:-Window-Rules
 
+window-rule {
+    match app-id="org.gnome.Meld"
+    open-floating true
+}
+
+window-rule {
+    match app-id="xdg-desktop-portal-gtk"
+    open-floating true
+}
+
+window-rule {
+    match app-id="org.gnome.FileRoller"
+    match title="Extract"
+    open-floating true
+    default-column-width { fixed 701; }
+    default-window-height { fixed 222; }
+}
+
+window-rule {
+    match app-id="Thunar"
+    match title="File Operation Progress"
+    open-floating true
+}
+
+window-rule {
+    match app-id="Thunar"
+    match title="Attention"
+    open-focused true
+}
+
+window-rule {
+    match app-id="Thunar"
+    match title=r#"(Rename).*"#
+    open-focused true
+    open-floating true
+}
+
+window-rule {
+    match title="JDownloader 2"
+    open-floating true
+}
+
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
 window-rule {
@@ -156,11 +196,13 @@ window-rule {
 
 // Open the Firefox picture-in-picture player as floating by default.
 window-rule {
+    geometry-corner-radius 5
+    clip-to-geometry true
     // This app-id regular expression will work for both:
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-    open-floating true
+    // match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    // open-floating true
 }
 
 // Example: block out two password managers from screen capture.
@@ -185,26 +227,25 @@ window-rule {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "combi"; }
-    // TODO: Use hyprlock?
-    Super+Alt+L hotkey-overlay-title="Lock the Screen: swaylock" { spawn "swaylock"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn "uwsm" "app" "--" "ghostty"; }
+    // Mod+Return hotkey-overlay-title="Open a Terminal: ghostty" { spawn  "foot"; }
+    Mod+D hotkey-overlay-title="Run an Application: rofi" { spawn "rofi" "-show" "combi" "-run-command" "uwsm app -- {cmd}"; }
+    Mod+S hotkey-overlay-title="Select window" { spawn "uwsm" "app" "--" "rofi" "-show" "window"; }
 
-    // Use spawn-sh to run a shell command. Do this if you need pipes, multiple commands, etc.
-    // Note: the entire command goes as a single argument. It's passed verbatim to `sh -c`.
-    // For example, this is a standard bind to toggle the screen reader (orca).
-    Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
+    // TODO: use uwsm?
+    Mod+V hotkey-overlay-title="Open clipboard history" { spawn-sh "cliphist list | rofi -dmenu | cliphist decode | wl-copy"; }
 
-    // Example volume keys mappings for PipeWire & WirePlumber.
-    // The allow-when-locked=true property makes them work even when the session is locked.
-    // Using spawn-sh allows to pass multiple arguments together with the command.
+    // TODO: use uwsm?
+    // XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
     XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
+    // XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
     XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
     XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
 
     // Example media keys mapping using playerctl.
     // This will work with any MPRIS-enabled media player.
+    // TODO: use uwsm?
     XF86AudioPlay        allow-when-locked=true { spawn-sh "playerctl play-pause"; }
     XF86AudioStop        allow-when-locked=true { spawn-sh "playerctl stop"; }
     XF86AudioPrev        allow-when-locked=true { spawn-sh "playerctl previous"; }
@@ -213,8 +254,13 @@ binds {
     // Example brightness key mappings for brightnessctl.
     // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
     // but you need to manually put each argument in separate "" quotes.
+    // TODO: use uwsm?
     XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
     XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
+
+    // Mod+Escape { spawn-sh "wlr-which-key --initial-keys 'Mod4+Escape'"; }
+    Mod+Escape { spawn "uwsm" "app" "--" "wlr-which-key" "--initial-keys" "Mod4+Escape"; }
+    Mod+Ctrl+P { spawn "uwsm" "app" "--" "wlr-which-key" "--initial-keys" "Mod4+Escape"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     // You can also move the mouse into the top-left hot corner,
@@ -384,8 +430,9 @@ binds {
     Mod+Shift+Equal { set-window-height "+10%"; }
 
     // Move the focused window between the floating and the tiling layout.
-    Mod+V       { toggle-window-floating; }
-    Mod+Shift+V { switch-focus-between-floating-and-tiling; }
+    // TODO: Change key
+    Mod+Space       { toggle-window-floating; }
+    Mod+Shift+Space { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
     // Windows in this column will appear as vertical tabs,
@@ -412,14 +459,17 @@ binds {
     //
     // The allow-inhibiting=false property can be applied to other binds as well,
     // which ensures niri always processes them, even when an inhibitor is active.
-    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+    // Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E { quit; }
-    Ctrl+Alt+Delete { quit; }
+    // Mod+Shift+E { quit; }
+    // Ctrl+Alt+Delete { quit; }
+    Mod+Shift+E { spawn "uwsm" "stop"; }
+    Ctrl+Alt+Delete { spawn "uwsm" "stop"; }
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
+    // TODO: use uwsm?
     Mod+Shift+P { power-off-monitors; }
 }
 

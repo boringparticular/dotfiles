@@ -1,0 +1,150 @@
+// --- Startup Applications ---
+spawn-at-startup "dbus-update-activation-environment" "--systemd" "DISPLAY" "WAYLAND_DISPLAY" "XDG_CURRENT_DESKTOP"
+spawn-at-startup "systemctl" "--user" "stop" "graphical-session.target"
+spawn-at-startup "systemctl" "--user" "start" "graphical-session.target"
+spawn-at-startup "wl-paste" "--type" "text" "--watch" "cliphist" "store"
+spawn-at-startup "wl-paste" "--type" "image" "--watch" "cliphist" "store"
+spawn-at-startup "swaybg" "-m" "fill" "-i" "/path/to/your/wallpaper" // Niri doesn't use hyprpaper natively; swaybg is a good alternative
+spawn-at-startup "waybar"
+
+// --- Input Configuration ---
+input {
+    keyboard {
+        xkb {
+            layout "us,kr"
+            variant "altgr-intl,"
+        }
+    }
+    touchpad {
+        off
+    }
+    mouse {
+        // follow-mouse=2 in Hyprland is roughly "focus-follows-mouse"
+    }
+}
+
+// --- Layout & Appearance ---
+layout {
+    gaps 5
+    center-focused-column "never"
+
+    preset-column-widths {
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+    }
+
+    default-column-width { proportion 0.5; }
+
+    border {
+        width 5
+        active-color "#49cae4"
+        inactive-color "#676567"
+    }
+
+    focus-ring {
+        off
+    }
+}
+
+// --- Window Rules ---
+window-rule {
+    match class="org.gnome.Meld"
+    match class="xdg-desktop-portal-gtk"
+    open-floating true
+}
+
+window-rule {
+    match class="org.gnome.FileRoller" title="Extract"
+    match class="Thunar" title="File Operation Progress"
+    match class="Thunar" title="Attention"
+    match class="Thunar" title="Rename.*"
+    open-floating true
+}
+
+// --- Keybindings ---
+binds {
+    // Basics
+    Mod+Return { spawn "uwsm" "app" "--" "ghostty"; }
+    Mod+Q { close-window; }
+    Mod+Shift+Q { quit; }
+    Mod+Shift+R { spawn "niri" "msg" "reload"; }
+
+    // Rofi & Clipboard
+    Mod+D { spawn "rofi" "-show" "combi" "-run-command" "uwsm app -- {cmd}"; }
+
+    // Navigation (Vim Keys)
+    // Moving Windows
+    Mod+Shift+H { move-column-left; }
+    Mod+Shift+J { move-window-down; }
+    Mod+Shift+K { move-window-up; }
+    Mod+Shift+L { move-column-right; }
+
+    // Workspaces (Niri calls them workspaces, but they scroll)
+    Mod+1 { focus-workspace 1; }
+    Mod+2 { focus-workspace 2; }
+    Mod+3 { focus-workspace 3; }
+    Mod+4 { focus-workspace 4; }
+    Mod+5 { focus-workspace 5; }
+    Mod+6 { focus-workspace 6; }
+    Mod+7 { focus-workspace 7; }
+    Mod+8 { focus-workspace 8; }
+    Mod+9 { focus-workspace 9; }
+
+    Mod+Shift+1 { move-column-to-workspace 1; }
+    Mod+Shift+2 { move-column-to-workspace 2; }
+    Mod+Shift+3 { move-column-to-workspace 3; }
+    Mod+Shift+4 { move-column-to-workspace 4; }
+    Mod+Shift+5 { move-column-to-workspace 5; }
+    Mod+Shift+6 { move-column-to-workspace 6; }
+    Mod+Shift+7 { move-column-to-workspace 7; }
+    Mod+Shift+8 { move-column-to-workspace 8; }
+    Mod+Shift+9 { move-column-to-workspace 9; }
+
+    // Layout Controls
+    Mod+Space { toggle-window-floating; }
+    Mod+F { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+    Mod+S { switch-preset-column-width; } // Closest to Hyprland 'pseudo'
+
+    // Media Keys
+    XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
+    XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
+
+    // Screenshot
+    Mod+Print { spawn "sh" "-c" "grim -g \"$(slurp)\""; }
+    Mod+Shift+Print { spawn "sh" "-c" "grim -g \"$(slurp)\" - | wl-copy"; }
+
+    // Minimizing (Niri's version of special workspace/minimized)
+    Mod+M { minimize-window; }
+    Mod+Shift+M { show-window-picker; }
+
+    // Resize Mode
+    Mod+R { switch-layout-mode "resize"; }
+}
+
+// --- Modes (Submaps) ---
+mode "resize" {
+    bind "H" { set-column-width "-10"; }
+    bind "L" { set-column-width "+10"; }
+    bind "K" { set-window-height "-10"; }
+    bind "J" { set-window-height "+10"; }
+
+    bind "Escape" { switch-layout-mode "default"; }
+    bind "Enter" { switch-layout-mode "default"; }
+}
+
+// Power Mode (Submap)
+mode "power" {
+    bind "L" { spawn "hyprlock"; switch-layout-mode "default"; }
+    bind "S" { spawn "systemctl" "suspend"; switch-layout-mode "default"; }
+    bind "R" { spawn "systemctl" "reboot"; }
+    bind "P" { spawn "systemctl" "poweroff"; }
+    bind "H" { spawn "systemctl" "hibernate"; }
+
+    bind "Escape" { switch-layout-mode "default"; }
+}
+binds {
+    Mod+Escape { switch-layout-mode "power"; }
+}
