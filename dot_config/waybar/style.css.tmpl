@@ -3,15 +3,15 @@
     font-size: 12pt;
 }
 
-@define-color base00 #{{ .theme.colors.base00 }}; @define-color base01 #{{ .theme.colors.base01 }};
-@define-color base02 #{{ .theme.colors.base02 }}; @define-color base03 #{{ .theme.colors.base03 }};
-@define-color base04 #{{ .theme.colors.base04 }}; @define-color base05 #{{ .theme.colors.base05 }};
-@define-color base06 #{{ .theme.colors.base06 }}; @define-color base07 #{{ .theme.colors.base07 }};
+@define-color base00 #{{ .theme.palette.base00 }}; @define-color base01 #{{ .theme.palette.base01 }};
+@define-color base02 #{{ .theme.palette.base02 }}; @define-color base03 #{{ .theme.palette.base03 }};
+@define-color base04 #{{ .theme.palette.base04 }}; @define-color base05 #{{ .theme.palette.base05 }};
+@define-color base06 #{{ .theme.palette.base06 }}; @define-color base07 #{{ .theme.palette.base07 }};
 
-@define-color base08 #{{ .theme.colors.base08 }}; @define-color base09 #{{ .theme.colors.base09 }};
-@define-color base0A #{{ .theme.colors.base0A }}; @define-color base0B #{{ .theme.colors.base0B }};
-@define-color base0C #{{ .theme.colors.base0C }}; @define-color base0D #{{ .theme.colors.base0D }};
-@define-color base0E #{{ .theme.colors.base0E }}; @define-color base0F #{{ .theme.colors.base0F }};
+@define-color base08 #{{ .theme.palette.base08 }}; @define-color base09 #{{ .theme.palette.base09 }};
+@define-color base0A #{{ .theme.palette.base0A }}; @define-color base0B #{{ .theme.palette.base0B }};
+@define-color base0C #{{ .theme.palette.base0C }}; @define-color base0D #{{ .theme.palette.base0D }};
+@define-color base0E #{{ .theme.palette.base0E }}; @define-color base0F #{{ .theme.palette.base0F }};
 
 * {
   color: @base05;
@@ -48,7 +48,7 @@ window#waybar {
  }
 
  #workspaces button.active {
-   color: @base01;
+   color: @base05;
    background-color: @base0D;
    /* text-shadow: 0 0 6px @base05; */
  }

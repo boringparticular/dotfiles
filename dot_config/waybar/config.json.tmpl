@@ -7,11 +7,11 @@
       },
       "calendar": {
         "format": {
-          "days": "<span color='#{{ .theme.colors.base06 }}'><b>{}</b></span>",
-          "months": "<span color='#{{ .theme.colors.base0F }}'><b>{}</b></span>",
-          "today": "<span color='#{{ .theme.colors.base08 }}'><b><u>{}</u></b></span>",
-          "weekdays": "<span color='#{{ .theme.colors.base0A }}'><b>{}</b></span>",
-          "weeks": "<span color='#{{ .theme.colors.base0C }}'><b>W{}</b></span>"
+          "days": "<span color='#{{ .theme.palette.base06 }}'><b>{}</b></span>",
+          "months": "<span color='#{{ .theme.palette.base0F }}'><b>{}</b></span>",
+          "today": "<span color='#{{ .theme.palette.base08 }}'><b><u>{}</u></b></span>",
+          "weekdays": "<span color='#{{ .theme.palette.base0A }}'><b>{}</b></span>",
+          "weeks": "<span color='#{{ .theme.palette.base0C }}'><b>W{}</b></span>"
         },
         "mode": "month",
         "on-scroll": 1
@@ -19,7 +19,7 @@
       "format": "󰸗 {:%d.%m  %H:%M}",
       "timezone": "Europe/Berlin",
       "tooltip": true,
-      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+      "tooltip-format": "<big>{:%Y %B}</big>n<tt><small>{calendar}</small></tt>"
     },
     "cpu": {
       "format": "{usage}% 󰻠",

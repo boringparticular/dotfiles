@@ -13,7 +13,7 @@ $mainMod=SUPER
 
 decoration {
   shadow {
-    color=rgba({{ .theme.colors.base00 }}99)
+    color=rgba({{ .theme.palette.base00 }}99)
   }
   rounding=5
 }
@@ -25,19 +25,19 @@ dwindle {
 
 general {
   border_size=5
-  col.active_border=rgb({{ .theme.colors.base0D }})
-  col.inactive_border=rgb({{ .theme.colors.base03 }})
+  col.active_border=rgb({{ .theme.palette.base0D }})
+  col.inactive_border=rgb({{ .theme.palette.base03 }})
 }
 
 group {
   groupbar {
-    col.active=rgb({{ .theme.colors.base0D }})
-    col.inactive=rgb({{ .theme.colors.base03 }})
-    text_color=rgb({{ .theme.colors.base05 }})
+    col.active=rgb({{ .theme.palette.base0D }})
+    col.inactive=rgb({{ .theme.palette.base03 }})
+    text_color=rgb({{ .theme.palette.base05 }})
   }
-  col.border_active=rgb({{ .theme.colors.base0D }})
-  col.border_inactive=rgb({{ .theme.colors.base03 }})
-  col.border_locked_active=rgb({{ .theme.colors.base0C }})
+  col.border_active=rgb({{ .theme.palette.base0D }})
+  col.border_inactive=rgb({{ .theme.palette.base03 }})
+  col.border_locked_active=rgb({{ .theme.palette.base0C }})
 }
 
 input {
@@ -47,7 +47,7 @@ input {
 }
 
 misc {
-  background_color=rgb({{ .theme.colors.base00 }})
+  background_color=rgb({{ .theme.palette.base00 }})
 }
 
 bind=$mainMod, RETURN, exec, uwsm app -- ghostty

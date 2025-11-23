@@ -2,15 +2,15 @@
 background {
   monitor=HDMI-A-1
   blur_passes=0
-  color=rgb({{ .theme.colors.base00 }})
-  path=$HOME/bg2560.png
+  color=rgb({{ .theme.palette.base00 }})
+  # path=$HOME/bg2560.png
 }
 
 background {
   monitor=DVI-D-1
   blur_passes=0
-  color=rgb({{ .theme.colors.base00 }})
-  path=$HOME/bg1920.png
+  color=rgb({{ .theme.palette.base00 }})
+  # path=$HOME/bg1920.png
 }
 
 general {
@@ -21,9 +21,9 @@ general {
 image {
   monitor=
   size=100
-  border_color=rgb({{ .theme.colors.base07 }})
+  border_color=rgb({{ .theme.palette.base07 }})
   halign=center
-  path=$HOME/.face
+  # path=$HOME/.face
   position=0, 75
   valign=center
 }
@@ -31,28 +31,28 @@ image {
 input-field {
   monitor=
   size=300, 60
-  capslock_color=rgb({{ .theme.colors.base0A }})
-  check_color=rgb({{ .theme.colors.base07 }})
+  capslock_color=rgb({{ .theme.palette.base0A }})
+  check_color=rgb({{ .theme.palette.base07 }})
   dots_center=true
   dots_size=0.200000
   dots_spacing=0.200000
   fade_on_empty=false
-  fail_color=rgb({{ .theme.colors.base08 }})
+  fail_color=rgb({{ .theme.palette.base08 }})
   fail_text=<i>$FAIL <b>($ATTEMPTS)</b></i>
-  font_color=rgb({{ .theme.colors.base05 }})
+  font_color=rgb({{ .theme.palette.base05 }})
   halign=center
   hide_input=false
-  inner_color=rgb({{ .theme.colors.base02 }})
-  outer_color=rgb({{ .theme.colors.base07 }})
+  inner_color=rgb({{ .theme.palette.base02 }})
+  outer_color=rgb({{ .theme.palette.base07 }})
   outline_thickness=4
-  placeholder_text=<span foreground='##{{ .theme.colors.base05 }}'><i>󰌾 Logged in as </i><span foreground='##{{ .theme.colors.base07 }}'>$USER</span></span>
+  placeholder_text=<span foreground='##{{ .theme.palette.base05 }}'><i>󰌾 Logged in as </i><span foreground='##{{ .theme.palette.base07 }}'>$USER</span></span>
   position=0, -47
   valign=center
 }
 
 label {
   monitor=
-  color=rgb({{ .theme.colors.base05 }})
+  color=rgb({{ .theme.palette.base05 }})
   font_family={{ .theme.fonts.monospace }}
   font_size=25
   halign=left
@@ -63,7 +63,7 @@ label {
 
 label {
   monitor=
-  color=rgb({{ .theme.colors.base05 }})
+  color=rgb({{ .theme.palette.base05 }})
   font_family={{ .theme.fonts.monospace }}
   font_size=90
   halign=right
@@ -74,7 +74,7 @@ label {
 
 label {
   monitor=
-  color=rgb({{ .theme.colors.base05 }})
+  color=rgb({{ .theme.palette.base05 }})
   font_family={{ .theme.fonts.monospace }}
   font_size=25
   halign=right
