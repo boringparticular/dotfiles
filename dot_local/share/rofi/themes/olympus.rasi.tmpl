@@ -1,0 +1,102 @@
+* {
+    background: rgba ( {{ .theme.palette.base00_rgb_r }}, {{ .theme.palette.base00_rgb_g }}, {{ .theme.palette.base00_rgb_b }}, 100 % );
+    base-text: rgba ( {{ .theme.palette.base05_rgb_r }}, {{ .theme.palette.base05_rgb_g }}, {{ .theme.palette.base05_rgb_b }}, 100 % );
+    border-color: rgba ( {{ .theme.palette.base0D_rgb_r }}, {{ .theme.palette.base0D_rgb_g }}, {{ .theme.palette.base0D_rgb_b }}, 100 % );
+    foreground: rgba ( {{ .theme.palette.base05_rgb_r }}, {{ .theme.palette.base05_rgb_g }}, {{ .theme.palette.base05_rgb_b }}, 100 % );
+    input-text: rgba ( {{ .theme.palette.base0D_rgb_r }}, {{ .theme.palette.base0D_rgb_g }}, {{ .theme.palette.base0D_rgb_b }}, 100 % );
+    normal-background: @background;
+    normal-text: rgba ( {{ .theme.palette.base05_rgb_r }}, {{ .theme.palette.base05_rgb_g }}, {{ .theme.palette.base05_rgb_b }}, 100 % );
+    selected-bg: rgba ( {{ .theme.palette.base0D_rgb_r }}, {{ .theme.palette.base0D_rgb_g }}, {{ .theme.palette.base0D_rgb_b }}, 100 % );
+    selected-normal-background: @selected-bg;
+    selected-normal-text: rgba ( {{ .theme.palette.base01_rgb_r }}, {{ .theme.palette.base01_rgb_g }}, {{ .theme.palette.base01_rgb_b }}, 100 % );
+}
+
+element {
+    background-color: @normal-background;
+    padding: 2px;
+    text-color: @normal-text;
+    vertical-align: 1;
+}
+
+element normal.normal {
+    background-color: @normal-background;
+    text-color: @normal-text;
+}
+
+element selected.normal {
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-text;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+entry {
+    cursor: pointer;
+}
+
+entry, prompt, case-indicator {
+    background-color: @background;
+    text-color: @input-text;
+}
+
+inputbar {
+    background-color: @background;
+    border: 3px 3px 2px 3px;
+    border-color: @border-color;
+    border-radius: 5px 5px 0px 0px;
+    padding: 11px;
+    text-color: @normal-text;
+}
+
+listview {
+    background-color: @background;
+    border: 0px 3px 3px 3px;
+    border-color: @border-color;
+    border-radius: 0px 0px 5px 5px;
+    columns: 1;
+    dynamic: false;
+    layout: vertical;
+    lines: 12;
+    padding: 8px;
+}
+
+mainbox {
+    children: [ inputbar, message, listview ];
+    spacing: 0;
+}
+
+message {
+    border: 0px 1px 1px 1px;
+    border-color: @border-color;
+    padding: 0;
+}
+
+prompt {
+    margin: 0px 5px 0px 0px;
+}
+
+scrollbar {
+    enabled: true;
+}
+
+textbox {
+    text-color: @base-text;
+}
+
+window {
+    anchor: center;
+    background-color: @background;
+    border: 0px;
+    border-color: @border-color;
+    border-radius: 5px;
+    children: [ mainbox ];
+    location: center;
+    orientation: horizontal;
+    spacing: 0;
+    width: 700;
+}
+
+// vim:ft=rasi
