@@ -1,10 +1,12 @@
+from pathlib import Path
+
 $EDITOR = "nvim"
 $XONSH_SHOW_TRACEBACK = False
 $AUTO_CD = True
 $AUTO_PUSHD = True
 $COLOR_RESULTS = True
 $ENABLE_ASYNC_PROMPT = True
-$HISTCONTROL = {'ignorespace', 'erasedups'}
+$HISTCONTROL = {'ignorespace', 'history erasedups'}
 $XONSH_HISTORY_BACKEND = 'sqlite'
 $XONSH_HISTORY_SIZE = (2**18, 'commands')
 $XONSH_STORE_STDOUT = True
@@ -12,7 +14,7 @@ $XONSH_AUTOPAIR = False
 $VI_MODE = False
 $MOUSE_SUPPORT = False
 $ALIAS_COMPLETIONS_OPTIONS_BY_DEFAULT = True
-$AUTO_SUGGEST = True
+$XONSH_PROMPT_AUTO_SUGGEST = True
 $AUTO_SUGGEST_IN_COMPLETIONS = False
 $CASE_SENSITIVE_COMPLETIONS = False
 $COMPLETION_IN_THREAD = True
@@ -23,6 +25,7 @@ $COMPLETIONS_CONFIRM = True
 $UPDATE_COMPLETIONS_ON_KEYPRESS = False
 $CMD_COMPLETIONS_SHOW_DESC = True
 $XONSH_COLOR_STYLE = 'monokai'
+$CALIBRE_OVERRIDE_DATABASE_PATH="$HOME/.calibre/metadata.db"
 
 source $XDG_CONFIG_HOME/xonsh/colors.xsh
 $XONSH_COLOR_STYLE = 'olympus'
@@ -69,8 +72,14 @@ aliases['nnvim'] = 'nix run "github:boringparticular/nixCats" -- '
 aliases['srg'] = "steam-run gamemoderun"
 aliases['srgm'] = "steam-run gamemoderun mangohud"
 
-source-bash /home/kmies/.guix-profile/etc/profile
-$GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
+# aliases['fd'] = "fd --hidden --exclude .git --exclude .jj"
+aliases['fd'] = "fd --hidden "
+
+source-bash "$HOME/.env.sh"
+
+if Path('/home/kmies/.guix-profile/etc/profile').exists():
+    source-bash /home/kmies/.guix-profile/etc/profile
+    $GUIX_LOCPATH="$HOME/.guix-profile/lib/locale"
 
 execx($(zoxide init xonsh), 'exec', __xonsh__.ctx, filename='zoxide')
 execx($(starship init xonsh --print-full-init))
@@ -78,4 +87,4 @@ exec($(carapace _carapace xonsh))
 execx($(atuin init xonsh))
 execx($(any-nix-shell xonsh --info-right))
 
-# vim:tw=78:ts=8:noet:ft=python:norl:
+# vim:ft=python:
