@@ -3,9 +3,20 @@ todo.md
 catp_to_base.py
 gen_schema.py
 derive_color_formats.py
-shell.nix
-.envrc
-.direnv
+apply_color_scheme.py
+change_color_scheme.sh
+color_preview.py
+color_preview.exs
+prepare_books.py
+**/*.nix
+**/flake.lock
+**/result
+**/npins
+**/.envrc
+**/.direnv
+schemes
+treefmt.toml
+.elixir_ls
 {{- if ne .chezmoi.hostname "zeus" }}
 dot_local
 dot_config/anyrun
