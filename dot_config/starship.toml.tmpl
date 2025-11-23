@@ -1,0 +1,121 @@
+add_newline = true
+format = "$os$directory$sudo${custom.jj}$git_branch$git_state$git_metrics$git_status$shell$fill$status $memory_usage$cmd_duration$jobs$direnv$golang$lua$python$rust$container$username$hostname$nix_shell$time$line_break$character"
+palette = "base16"
+
+[cmd_duration]
+format = "[ $duration]($style) "
+style = "green"
+
+[custom.jj]
+command = "prompt"
+detect_folders = [".jj"]
+format = "$output"
+ignore_timeout = true
+shell = ["starship-jj", "--ignore-working-copy", "starship"]
+use_stdin = false
+
+[directory]
+before_repo_root_style = "blue"
+format = "[ $path]($style)[$read_only]($read_only_style) "
+repo_root_style = "bold blue"
+style = "blue"
+truncate_to_repo = false
+truncation_length = 10
+
+[fill]
+symbol = "─"
+
+[git_branch]
+format = "[$symbol $branch(:$remote_branch)]($style) "
+style = "green"
+symbol = ""
+
+[git_status]
+ahead = "a${count}"
+behind = "b${count}"
+conflicted = "c${count}"
+deleted = "d${count}"
+format = "([$modified](yellow) [$untracked](blue) )"
+modified = "!${count}"
+renamed = "r${count}"
+staged = "st${count}"
+stashed = "s${count}"
+untracked = "?${count}"
+
+[memory_usage]
+disabled = false
+
+[nix_shell]
+format = "[$symbol$state]($style) "
+style = "sapphire"
+symbol = " "
+
+[os]
+disabled = false
+
+[os.symbols]
+NixOS = " "
+
+[palettes.base16]
+base00 = "#{{ .theme.palette.base00 }}"
+base01 = "#{{ .theme.palette.base01 }}"
+base02 = "#{{ .theme.palette.base02 }}"
+base03 = "#{{ .theme.palette.base03 }}"
+base04 = "#{{ .theme.palette.base04 }}"
+base05 = "#{{ .theme.palette.base05 }}"
+base06 = "#{{ .theme.palette.base06 }}"
+base07 = "#{{ .theme.palette.base07 }}"
+base08 = "#{{ .theme.palette.base08 }}"
+base09 = "#{{ .theme.palette.base09 }}"
+base0A = "#{{ .theme.palette.base0A }}"
+base0B = "#{{ .theme.palette.base0B }}"
+base0C = "#{{ .theme.palette.base0C }}"
+base0D = "#{{ .theme.palette.base0D }}"
+base0E = "#{{ .theme.palette.base0E }}"
+base0F = "#{{ .theme.palette.base0F }}"
+base10 = "#{{ .theme.palette.base00 }}"
+base11 = "#{{ .theme.palette.base00 }}"
+base12 = "#{{ .theme.palette.base08 }}"
+base13 = "#{{ .theme.palette.base0A }}"
+base14 = "#{{ .theme.palette.base0B }}"
+base15 = "#{{ .theme.palette.base0C }}"
+base16 = "#{{ .theme.palette.base0D }}"
+base17 = "#{{ .theme.palette.base0E }}"
+black = "#{{ .theme.palette.base00 }}"
+blue = "#{{ .theme.palette.base0D }}"
+bright-black = "#{{ .theme.palette.base03 }}"
+bright-blue = "#{{ .theme.palette.base0D }}"
+bright-cyan = "#{{ .theme.palette.base0C }}"
+bright-green = "#{{ .theme.palette.base0B }}"
+bright-magenta = "#{{ .theme.palette.base0E }}"
+bright-purple = "#{{ .theme.palette.base0E }}"
+bright-red = "#{{ .theme.palette.base08 }}"
+bright-white = "#{{ .theme.palette.base07 }}"
+bright-yellow = "#{{ .theme.palette.base0A }}"
+brown = "#{{ .theme.palette.base0F }}"
+cyan = "#{{ .theme.palette.base0C }}"
+green = "#{{ .theme.palette.base0B }}"
+magenta = "#{{ .theme.palette.base0E }}"
+orange = "#{{ .theme.palette.base09 }}"
+purple = "#{{ .theme.palette.base0E }}"
+red = "#{{ .theme.palette.base08 }}"
+white = "#{{ .theme.palette.base05 }}"
+yellow = "#{{ .theme.palette.base0A }}"
+
+[shell]
+disabled = true
+
+[status]
+disabled = false
+format = "[$symbol $status]($style)"
+symbol = "✘"
+
+[sudo]
+disabled = false
+
+[time]
+disabled = false
+format = "[ $time]($style)"
+style = "dimmed sky"
+
+# vim:ft=toml
