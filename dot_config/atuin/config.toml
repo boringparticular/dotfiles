@@ -1,0 +1,12 @@
+auto_sync = true
+enter_accept = true
+search_mode = "fuzzy"
+style = "compact"
+sync_address = "https://atuin.edgecube.io"
+sync_frequency = "5m"
+update_check = false
+
+[daemon]
+enabled = true
+# systemd_socket = true
+# socket_path = "/run/user/1000/atuin.sock"
