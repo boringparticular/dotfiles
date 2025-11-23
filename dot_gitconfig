@@ -1,0 +1,25 @@
+[user]
+	email = 15252288+boringparticular@users.noreply.github.com
+	name = Kai Mies
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
+
+[pull]
+        rebase = true
+
+[rebase]
+        autostash = true
+
+[fetch]
+        prune = true
+
+[diff]
+        colorMoved = "zebra"
+[credential "https://github.com"]
+	helper =
+	helper = !/run/current-system/sw/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/run/current-system/sw/bin/gh auth git-credential
