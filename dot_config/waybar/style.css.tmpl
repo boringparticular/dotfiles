@@ -1,0 +1,137 @@
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 12pt;
+}
+
+@define-color base00 #{{ .theme.colors.base00 }}; @define-color base01 #{{ .theme.colors.base00 }};
+@define-color base02 #{{ .theme.colors.base00 }}; @define-color base03 #{{ .theme.colors.base00 }};
+@define-color base04 #{{ .theme.colors.base00 }}; @define-color base05 #{{ .theme.colors.base00 }};
+@define-color base06 #{{ .theme.colors.base00 }}; @define-color base07 #{{ .theme.colors.base00 }};
+
+@define-color base08 #{{ .theme.colors.base00 }}; @define-color base09 #{{ .theme.colors.base00 }};
+@define-color base0A #{{ .theme.colors.base00 }}; @define-color base0B #{{ .theme.colors.base00 }};
+@define-color base0C #{{ .theme.colors.base00 }}; @define-color base0D #{{ .theme.colors.base00 }};
+@define-color base0E #{{ .theme.colors.base00 }}; @define-color base0F #{{ .theme.colors.base00 }};
+
+* {
+  color: @base05;
+}
+
+window#waybar {
+  background-color: shade(@base00, 0.9);
+  border: 2px solid alpha(@base01, 0.3);
+}
+
+#window,
+#workspaces {
+  margin: 0 4px;
+}
+
+ #workspaces {
+   background: rgba(0, 0, 0, 0.5);
+   border-radius: 8px;
+   margin: 6px 5px;
+   padding: 0 6px;
+ }
+
+ #workspaces button {
+   border-radius: 5px;
+   color: @base05;
+   background: transparent;
+   padding: 4px 8px;
+   transition: color 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
+   margin: 6px 2px;
+ }
+
+ #workspaces button.visible {
+   background-color: @base01;
+ }
+
+ #workspaces button.active {
+   color: @base01;
+   background-color: @base0D;
+   /* text-shadow: 0 0 6px @base05; */
+ }
+
+#workspaces button.urgent {
+  background-color: @base09;
+  color: @base01;
+}
+
+ #workspaces button:hover {
+   color: @base05;
+  background-color: shade(@base0D, 0.5);
+ }
+
+ #workspaces button.active:hover {
+   color: @base01;
+   background-color: @base0D;
+ }
+
+#idle_inhibitor,
+#wireplumber,
+#network,
+#memory,
+#cpu,
+#temperature,
+#keyboard-state,
+#disk,
+#clock,
+#tray {
+  padding: 0 10px;
+  margin: 0 6px;
+}
+
+#clock {
+  color: @base0E;
+}
+
+#cpu {
+    color: @base0C;
+}
+
+#memory {
+  color: @base0B;
+}
+
+#disk {
+  color: @base0F;
+}
+
+#network {
+  color: @base0D;
+}
+
+#network.disconnected {
+    background-color: @base08;
+}
+
+#temperature {
+  color: @base09;
+}
+
+#temperature.critical {
+    background-color: @base08;
+}
+
+#tray {
+  color: @base01;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+}
+
+#wireplumber {
+    color: @base07;
+}
+
+#wireplumber.muted {
+    background-color: @base08;
+}
+
+# vim:ft=css
