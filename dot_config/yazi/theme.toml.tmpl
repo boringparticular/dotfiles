@@ -1,0 +1,90 @@
+[mgr]
+cwd = { fg = "#{{ .theme.palette.base0C }}" }
+
+hovered = { reversed = true }
+preview_hoverd = { underline = true }
+
+find_keyword = { bold = true, fg = "#{{ .theme.palette.base0A }}" }
+find_position = { fg = "#{{ .theme.palette.base0E }}" }
+
+marker_copied = { fg = "#{{ .theme.palette.base0B }}", bg = "#{{ .theme.palette.base0B }}" }
+marker_cut = { fg = "#{{ .theme.palette.base08 }}", bg = "#{{ .theme.palette.base08 }}" }
+marker_selected = { fg = "#{{ .theme.palette.base0A }}", bg = "#{{ .theme.palette.base0A }}" }
+
+tab_inactive = { fg = "#{{ .theme.palette.base05 }}" }
+tab_active = { fg = "#{{ .theme.palette.base00 }}", bg = "#{{ .theme.palette.base05 }}"}
+
+count_copied = { fg = "#{{ .theme.palette.base00 }}", bg = "#{{ .theme.palette.base0B }}" }
+count_cut = { fg = "#{{ .theme.palette.base00 }}", bg = "#{{ .theme.palette.base08 }}" }
+count_selected = { fg = "#{{ .theme.palette.base00 }}", bg = "#{{ .theme.palette.base0A }}" }
+
+border_style = { fg = "#{{ .theme.palette.base0D }}" }
+
+[mode]
+normal_main = { fg = "#{{ .theme.palette.base00 }}", bg = "#{{ .theme.palette.base0D }}", bold = true }
+normal_alt = { fg = "#{{ .theme.palette.base0D }}", bg = "#{{ .theme.palette.base02 }}" }
+
+select_alt = { fg = "#{{ .theme.palette.base0E }}", bg = "#{{ .theme.palette.base02 }}" }
+select_main = { fg = "#{{ .theme.palette.base00 }}", bg = "#{{ .theme.palette.base0E }}", bold = true }
+
+unset_main = { fg = "#{{ .theme.palette.base00 }}", bg = "#{{ .theme.palette.base08 }}", bold = true }
+unset_alt = { fg = "#{{ .theme.palette.base08 }}", bg = "#{{ .theme.palette.base02 }}" }
+
+[status]
+perm_exec = { fg = "#{{ .theme.palette.base0B }}" }
+perm_read = { fg = "#{{ .theme.palette.base0A }}" }
+perm_sep = { fg = "#{{ .theme.palette.base0C }}" }
+perm_type = { fg = "#{{ .theme.palette.base0D }}" }
+perm_write = { fg = "#{{ .theme.palette.base08 }}" }
+
+progress_error = { fg = "#{{ .theme.palette.base08 }}", bg = "#{{ .theme.palette.base00 }}" }
+progress_label = { fg = "#{{ .theme.palette.base05 }}", bg = "#{{ .theme.palette.base00 }}" }
+progress_normal = { fg = "#{{ .theme.palette.base05 }}", bg = "#{{ .theme.palette.base00 }}" }
+
+[pick]
+active = { fg = "#{{ .theme.palette.base0E }}" }
+border = { fg = "#{{ .theme.palette.base0D }}" }
+inactive = { fg = "#{{ .theme.palette.base05 }}" }
+
+[task]
+title = { fg = "#{{ .theme.palette.base0D }}" }
+border = { fg = "#{{ .theme.palette.base0D }}" }
+hovered = { fg = "#{{ .theme.palette.base05 }}", bg = "#{{ .theme.palette.base02 }}" }
+
+[input]
+border = { fg = "#{{ .theme.palette.base0D }}" }
+selected = { bg = "#{{ .theme.palette.base02 }}" }
+
+[help]
+desc = { fg = "#{{ .theme.palette.base05 }}" }
+on = { fg = "#{{ .theme.palette.base0C }}" }
+run = { fg = "#{{ .theme.palette.base0E }}" }
+hovered = { reversed = true, bold = true }
+footer = { fg = "#{{ .theme.palette.base02 }}", bg = "#{{ .theme.palette.base05 }}" }
+
+[which]
+mask = { bg = "#{{ .theme.palette.base02 }}" }
+desc = { fg = "#{{ .theme.palette.base05 }}" }
+cand = { fg = "#{{ .theme.palette.base0C }}" }
+rest = { fg = "#{{ .theme.palette.base0F }}" }
+
+separator_style = { fg = "#{{ .theme.palette.base04 }}" }
+
+[notify]
+title_info = { fg = "#{{ .theme.palette.base0C }}" }
+title_warn = { fg = "#{{ .theme.palette.base0A }}" }
+title_error = { fg = "#{{ .theme.palette.base08 }}" }
+
+[filetype]
+rules = [
+  { mime = "image/*", fg = "#{{ .theme.palette.base0C }}" },
+  { mime = "{audio, video}/*", fg = "#{{ .theme.palette.base0A }}" },
+
+  { mime = "application/{pdf,doc,rtf}", fg = "#{{ .theme.palette.base0B }}" },
+
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*},", fg = "#{{ .theme.palette.base0E }}" },
+
+  { mime = "inode/directory", fg = "#{{ .theme.palette.base0D }}" },
+  { mime = "*", fg = "#{{ .theme.palette.base05 }}" },
+]
+# vim:ft=toml
