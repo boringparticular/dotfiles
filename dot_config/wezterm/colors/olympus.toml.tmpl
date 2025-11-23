@@ -1,0 +1,41 @@
+[colors]
+background = "#{{ .theme.palette.base00 }}"
+foreground = "#{{ .theme.palette.base05 }}"
+
+cursor_bg = "#{{ .theme.palette.base01 }}"
+cursor_border = "#{{ .theme.palette.base05 }}"
+cursor_fg = "#{{ .theme.palette.base06 }}"
+
+selection_bg = "#{{ .theme.palette.base05 }}"
+selection_fg = "#{{ .theme.palette.base02 }}"
+
+ansi = [
+  "#{{ .theme.palette.base00 }}",
+  "#{{ .theme.palette.base08 }}",
+  "#{{ .theme.palette.base0B }}",
+  "#{{ .theme.palette.base0A }}",
+  "#{{ .theme.palette.base0D }}",
+  "#{{ .theme.palette.base0E }}",
+  "#{{ .theme.palette.base0C }}",
+  "#{{ .theme.palette.base06 }}"
+]
+brights = [
+  "#{{ .theme.palette.base02 }}",
+  "#{{ .theme.palette.base12 }}",
+  "#{{ .theme.palette.base14 }}",
+  "#{{ .theme.palette.base13 }}",
+  "#{{ .theme.palette.base16 }}",
+  "#{{ .theme.palette.base17 }}",
+  "#{{ .theme.palette.base15 }}",
+  "#{{ .theme.palette.base07 }}"
+]
+
+[colors.indexed]
+16 = "#{{ .theme.palette.base09 }}"
+17 = "#{{ .theme.palette.base0F }}"
+18 = "#{{ .theme.palette.base01 }}"
+19 = "#{{ .theme.palette.base02 }}"
+20 = "#{{ .theme.palette.base04 }}"
+21 = "#{{ .theme.palette.base05 }}"
+
+# vim:ft=toml
