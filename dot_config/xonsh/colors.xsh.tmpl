@@ -1,0 +1,60 @@
+BLACK = '#{{ .theme.palette.base00 }}'
+WHITE = '#{{ .theme.palette.base05 }}'
+RED = '#{{ .theme.palette.base08 }}'
+GREEN = '#{{ .theme.palette.base0B }}'
+YELLOW = '#{{ .theme.palette.base0A }}'
+BLUE = '#{{ .theme.palette.base0D }}'
+CYAN = '#{{ .theme.palette.base0C }}'
+PURPLE = '#{{ .theme.palette.base0E }}'
+
+BOLD_RED = f'bold {RED}'
+BOLD_BLUE = f'bold {BLUE}'
+BOLD_CYAN = f'bold {CYAN}'
+BOLD_GREEN = f'bold {GREEN}'
+BOLD_PURPLE = f'bold {PURPLE}'
+BOLD_YELLOW = f'bold {YELLOW}'
+BOLD_WHITE = f'bold {WHITE}'
+
+INTENSE_BLACK = BLACK
+INTENSE_BLUE = BLUE
+INTENSE_CYAN = CYAN
+INTENSE_GREEN = GREEN
+INTENSE_PURPLE = PURPLE
+INTENSE_RED = RED
+INTENSE_WHITE = WHITE
+INTENSE_YELLOW = YELLOW
+
+BACKGROUND_BLACK = BLACK
+
+XONSH_COLOR_STYLE = {
+  'RED': RED,
+  'BLUE': BLUE,
+  'CYAN': CYAN,
+  'BLACK': BLACK,
+  'GREEN': GREEN,
+  'PURPLE': PURPLE,
+  'WHITE': WHITE,
+  'YELLOW': YELLOW,
+
+  'BOLD_BLUE': BOLD_BLUE,
+  'BOLD_CYAN': BOLD_CYAN,
+  'BOLD_GREEN': BOLD_GREEN,
+  'BOLD_PURPLE': BOLD_PURPLE,
+  'BOLD_RED': BOLD_RED,
+  'BOLD_YELLOW': BOLD_YELLOW,
+
+  'INTENSE_BLACK': INTENSE_BLACK,
+  'INTENSE_BLUE': INTENSE_BLUE,
+  'INTENSE_CYAN': INTENSE_CYAN,
+  'INTENSE_GREEN': INTENSE_GREEN,
+  'INTENSE_PURPLE': INTENSE_PURPLE,
+  'INTENSE_RED': INTENSE_RED,
+  'INTENSE_WHITE': INTENSE_WHITE,
+  'INTENSE_YELLOW': INTENSE_YELLOW,
+
+  'BACKGROUND_BLACK': BACKGROUND_BLACK,
+}
+
+from xonsh.tools import register_custom_style
+register_custom_style('olympus', XONSH_COLOR_STYLE, base='monokai')
+# vim:ft=python
