@@ -1,0 +1,8 @@
+notes.md
+todo.md
+catp_to_base.py
+gen_schema.py
+derive_color_formats.py
+shell.nix
+.envrc
+.direnv
