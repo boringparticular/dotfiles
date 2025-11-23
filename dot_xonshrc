@@ -24,10 +24,10 @@ $UPDATE_COMPLETIONS_ON_KEYPRESS = False
 $CMD_COMPLETIONS_SHOW_DESC = True
 # TODO: How to do that?
 $BASH_COMPLETIONS = '${pkgs.bash-completion}/share/bash-completion/bash_completion'
-# $XONSH_COLOR_STYLE = 'monokai'
+$XONSH_COLOR_STYLE = 'monokai'
 
-source $XDG_CONFIG_HOME/xonsh/catppuccin.xsh
-$XONSH_COLOR_STYLE = 'catppuccin-mocha'
+source $XDG_CONFIG_HOME/xonsh/colors.xsh
+$XONSH_COLOR_STYLE = 'olympus'
 
 xontrib load abbrevs
 xontrib load fish_completer
