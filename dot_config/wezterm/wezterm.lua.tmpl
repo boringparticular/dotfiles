@@ -1,0 +1,73 @@
+local wezterm = require("wezterm")
+wezterm.add_to_config_reload_watch_list(wezterm.config_dir)
+-- Allow working with both the current release and the nightly
+local config = {}
+
+if wezterm.config_builder then
+	config = wezterm.config_builder()
+end
+
+local olympus_base_config = {
+	color_scheme = "olympus",
+	window_frame = {
+		active_titlebar_bg = "{{ .theme.palette.base03 }}",
+		active_titlebar_fg = "{{ .theme.palette.base05 }}",
+		active_titlebar_border_bottom = "{{ .theme.palette.base03 }}",
+		border_left_color = "{{ .theme.palette.base01 }}",
+		border_right_color = "{{ .theme.palette.base01 }}",
+		border_bottom_color = "{{ .theme.palette.base01 }}",
+		border_top_color = "{{ .theme.palette.base01 }}",
+		button_bg = "{{ .theme.palette.base01 }}",
+		button_fg = "{{ .theme.palette.base05 }}",
+		button_hover_bg = "{{ .theme.palette.base05 }}",
+		button_hover_fg = "{{ .theme.palette.base03 }}",
+		inactive_titlebar_bg = "{{ .theme.palette.base01 }}",
+		inactive_titlebar_fg = "{{ .theme.palette.base05 }}",
+		inactive_titlebar_border_bottom = "{{ .theme.palette.base03 }}",
+	},
+	colors = {
+		tab_bar = {
+			background = "{{ .theme.palette.base01 }}",
+			inactive_tab_edge = "{{ .theme.palette.base01 }}",
+			active_tab = {
+				bg_color = "{{ .theme.palette.base00 }}",
+				fg_color = "{{ .theme.palette.base05 }}",
+			},
+			inactive_tab = {
+				bg_color = "{{ .theme.palette.base03 }}",
+				fg_color = "{{ .theme.palette.base05 }}",
+			},
+			inactive_tab_hover = {
+				bg_color = "{{ .theme.palette.base05 }}",
+				fg_color = "{{ .theme.palette.base00 }}",
+			},
+			new_tab = {
+				bg_color = "{{ .theme.palette.base03 }}",
+				fg_color = "{{ .theme.palette.base05 }}",
+			},
+			new_tab_hover = {
+				bg_color = "{{ .theme.palette.base05 }}",
+				fg_color = "{{ .theme.palette.base00 }}",
+			},
+		},
+	},
+	command_palette_bg_color = "{{ .theme.palette.base01 }}",
+	command_palette_fg_color = "{{ .theme.palette.base05 }}",
+
+	font = wezterm.font_with_fallback({
+		"{{ .theme.fonts.monospace }}",
+		"{{ .theme.fonts.emoji }}",
+	}),
+	font_size = {{ .theme.fonts.sizes.terminal }},
+	command_palette_font_size = {{ .theme.fonts.sizes.terminal }},
+
+	window_background_opacity = {{ .theme.opacity.terminal }},
+}
+
+for key, value in pairs(olympus_base_config) do
+	config[key] = value
+end
+
+return config
+
+-- vim:ft=lua
