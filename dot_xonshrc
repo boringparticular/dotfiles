@@ -22,8 +22,6 @@ $COMPLETIONS_BRACKETS = True
 $COMPLETIONS_CONFIRM = True
 $UPDATE_COMPLETIONS_ON_KEYPRESS = False
 $CMD_COMPLETIONS_SHOW_DESC = True
-# TODO: How to do that?
-$BASH_COMPLETIONS = '${pkgs.bash-completion}/share/bash-completion/bash_completion'
 $XONSH_COLOR_STYLE = 'monokai'
 
 source $XDG_CONFIG_HOME/xonsh/colors.xsh
