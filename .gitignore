@@ -1,3 +1,6 @@
 .envrc
 .direnv
 .chezmoidata/10-base.json
+dot_config/nvim
+dot_config/nvim-minimax
+schemes
